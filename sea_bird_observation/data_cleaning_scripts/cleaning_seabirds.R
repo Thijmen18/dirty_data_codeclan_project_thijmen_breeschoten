@@ -43,3 +43,26 @@ ships_reduced <- ships_names %>%
 seabirds_renamed <- rename(seabirds_reduced, "recordnr_seabird" = "record")
 
 ships_renamed <- rename(ships_reduced, "recordnr_ships" = "record")
+
+# joining data
+
+seabirds_observed <- left_join(seabirds_renamed, ships_renamed, "record_id")
+
+# in species names columns, "age" is included: lets drop that.
+# possibilities: AD, SUBAD, IMM, JUV
+
+seabirds_correct_name <- seabirds_observed %>% 
+  mutate(species_common = 
+           str_remove(species_common, " (AD|JUV|IMM|SUBAD)$")) %>% 
+  mutate(species_abbreviation = 
+           str_remove(species_abbreviation, " (AD|JUV|IMM|SUBAD)$")) %>%
+  mutate(species_scientific = 
+           str_remove(species_scientific, " (AD|JUV|IMM|SUBAD)$"))
+seabirds_correct_name  
+
+#check NAs for important columns
+seabirds_correct_name %>% 
+  select(species_common, species_scientific, species_abbreviation, count, lat, long) %>% 
+  summarise(across(.fns = ~sum(is.na(.x))))
+
+            
