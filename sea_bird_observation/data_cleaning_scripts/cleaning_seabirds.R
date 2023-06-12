@@ -53,11 +53,11 @@ seabirds_observed <- left_join(seabirds_renamed, ships_renamed, "record_id")
 
 seabirds_correct_name <- seabirds_observed %>% 
   mutate(species_common = 
-           str_remove(species_common, " (AD|JUV|IMM|SUBAD)$")) %>% 
+           str_remove(species_common, " (AD|JUV|IMM|SUBAD|PL[0-9])$")) %>% 
   mutate(species_abbreviation = 
-           str_remove(species_abbreviation, " (AD|JUV|IMM|SUBAD)$")) %>%
+           str_remove(species_abbreviation, " (AD|JUV|IMM|SUBAD|PL[0-9])$")) %>%
   mutate(species_scientific = 
-           str_remove(species_scientific, " (AD|JUV|IMM|SUBAD)$"))
+           str_remove(species_scientific, " (AD|JUV|IMM|SUBAD|PL[0-9])$"))
 seabirds_correct_name  
 
 #check NAs for important columns
