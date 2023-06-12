@@ -21,15 +21,19 @@ view(candy_2017)
 # Based on data exploration: 
 # this is a questionaire during Halloween, over 3 consecutive years.
 # generally most columns are existing in 3 files
-# before we combine the datasets, lets get the column headers uniform!
+
 
 #########
+# STEP 1: lets get the column headers uniform!
+# and add a column at the start with the year.
+
 #first simplify columns candy_2015
 #candy_2015_simple_names <- 
   candy_2015 %>% 
   rename("age" = 2,
-  "participate" = 3) 
-
+  "participate" = 3) %>% 
+  mutate(year = "2015", .before = Timestamp) %>% 
+  head()
 
 
 #secondly, candy_2016
@@ -38,7 +42,8 @@ candy_2016 %>%
          "participate" = 2,
          "country" = 5,
          "address" = 6,
-         "gender" = 3)
+         "gender" = 3) %>% 
+  mutate(year = "2016", .before = Timestamp)
 
 #thirdly, candy_2017
 candy_2017 %>% 
@@ -46,4 +51,5 @@ candy_2017 %>%
          "participate" = 2,
          "country" = 5,
          "address" = 6,
-         "gender" = 3)
+         "gender" = 3) %>% 
+  mutate(year = "2017", .before = `Internal ID`)
