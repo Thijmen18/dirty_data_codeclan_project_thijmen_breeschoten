@@ -10,12 +10,15 @@ output: html_document
 README file for the `CodeClan - dirty data project - task 3: seabirds observations
 Thijmen Breeschoten 
 CodeClan Professional Data Analysis student cohort DE21
+This file does provide information as normally presented in a README file, but 
+further sums up information regarding the cleaning/analyses steps taken for review.
 
 ### Overview
 Goal of the project task is to clean and analyse a raw dataset in order to answer 
 several questions regarding the data.
 The raw data contains seabird observations/sightings as done from ships in seas 
-around New Zealand.
+around New Zealand. The raw data (.xls file) contains two worksheets with 1) ship data 
+and 2) bird data (counts+names). 
 
 The underlying code provides:
 1. data cleaning steps
@@ -32,3 +35,116 @@ The underlying code provides:
 
 * R is run in Rstudio 2023.03.0+386 
 
+* The following libraries are required:
+  cleaning_seabirds.R
+  - `tidyverse`(ver 2.0.0)
+  - `readxl` (ver 1.4.2)
+  analysing_seabirds.Rmd
+  - `tidyverse`(ver 2.0.0)
+  
+### File and folder overview
+The project folder `sea_bird_observation` contains the .Rproj file and this README file.
+The following files are included and distributed in each folder:
+
+clean_data
+  - `seabirds_cleaned.csv` cleaned dataset using script 'cleaning_seabirds.R'
+data_cleaning_scripts
+  - `cleaning_seabirds.R` Rscript to read and clean the raw data file.
+documentation_and_analysis
+  - `analysing_seabirds.Rmd` (and knitted html file) Rnotebook script to analyse the
+    cleaned dataset in order to answer the analyses questions.
+raw_data
+  - `seabirds.xls` raw dataset in xls format
+
+### cleaning overview
+
+* Cleaning the raw dataset using the script `cleaning_seabirds.R`
+  - Step 1, read in data from both worksheets and clean names
+  - Step 2, non-informative columns are dropped
+  - Step 3, datasets from both worksheet are joined using a left_join 
+    (since you want to keep all bird sightings info rows)
+```{r}
+# joining data
+seabirds_observed <- left_join(seabirds_renamed, ships_renamed, "record_id")
+```
+  - Step 4, dropping all additional information about the age in the species name columns
+```{r}
+seabirds_correct_name <- seabirds_observed %>% 
+  mutate(species_common = 
+           str_remove(species_common, " (AD|JUV|IMM|SUBAD|PL[0-9])$")) %>% 
+  mutate(species_abbreviation = 
+           str_remove(species_abbreviation, " (AD|JUV|IMM|SUBAD|PL[0-9])$")) %>%
+  mutate(species_scientific = 
+           str_remove(species_scientific, " (AD|JUV|IMM|SUBAD|PL[0-9])$"))
+```
+  - Step 5, check missing data and drop NAs for all rows where no scientific name is given.
+  We at least need a scientific name to know which bird is seen!
+```{r}
+#check NAs for important columns
+seabirds_correct_name %>% 
+  select(species_common, species_scientific, species_abbreviation, count, lat, long) %>% 
+  summarise(across(.fns = ~sum(is.na(.x))))
+
+# most NAs found in scientific name (if scientific name is absent, than 
+#other names are not valid)
+seabirds_correct_name %>% 
+  select(species_common, species_scientific, species_abbreviation, count, lat, long) %>% 
+  filter(is.na(species_scientific))
+# therefore, lets drop all rows with NA scientific name
+seabirds_names_complete <- seabirds_correct_name %>% 
+  drop_na(species_scientific)
+```
+  -> Important assumption/ decision:
+  I have not removed double names/ and or Sensu Lato descriptions from the
+  observations list. In biology it is common not to be able to identify down to species
+  but have a 'species complex' as a valid observation instead. If I decide to remove 
+  one of the 'potential' species names I do increase the certainty about the observation,
+  while it is clear that the observer could not identify the seabird down to a 
+  single species. This is important information to keep in your data file!
+  - Similar for species for which only a genus name is given. I made the assumption 
+  that the observer could only identify to genus level, not the species.
+  
+  - Step 6, write cleaned dataset to new csv file
+```{r}
+# Write the cleaned dataset to new csv file:
+  write.csv(seabirds_names_complete, file = "clean_data/seabirds_cleaned.csv")
+```
+  
+
+### Assumptions / decisions
+1. -> Important assumption/ decision:
+  I have not removed double names/ and or Sensu Lato descriptions from the
+  observations list. In biology it is common not to be able to identify down to species
+  but have a 'species complex' as a valid observation instead. If I decide to remove 
+  one of the 'potential' species names I do increase the certainty about the observation,
+  while it is clear that the observer could not identify the seabird down to a 
+  single species. This is important information to keep in your data file!
+  
+- Similar for species for which only a genus name is given. I made the assumption 
+  that the observer could only identify to genus level, not the species. This is 
+  still a valid observation to leave in the dataset. But if a species name is asked
+  as question I will not take these into account.
+-> I will explain the answer of each analyses question based on the assumption above.
+
+### analyses overview
+* Question 1 - Which bird had the most individual sightings?
+  
+```{r}
+seabirds %>% 
+  select(species_scientific, species_common, species_abbreviation, count) %>% 
+  filter(count == 1) %>% 
+  group_by(species_scientific, species_common, species_abbreviation) %>% 
+  summarise(count_birds_individual_sights = sum(count)) %>% 
+  arrange(desc(count_birds_individual_sights))
+```
+  Answer:
+  Species with the highest individual counts is the species complex:
+  Diomedea antipodensis / exulans, Wandering albatross sensu lato, DIOANTEXU
+  -> 6508 exx.
+
+  If we want to have the highest scoring true species:
+  Pterodroma macroptera gouldi / Grey-faced petrel / PTEMACGOU
+  -> 1023 exx.
+  
+
+  
