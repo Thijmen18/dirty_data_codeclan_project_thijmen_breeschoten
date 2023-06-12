@@ -65,4 +65,17 @@ seabirds_correct_name %>%
   select(species_common, species_scientific, species_abbreviation, count, lat, long) %>% 
   summarise(across(.fns = ~sum(is.na(.x))))
 
-            
+# most NAs found in scientific name (if scientific name is absent, than 
+#other names are not valid)
+seabirds_correct_name %>% 
+  select(species_common, species_scientific, species_abbreviation, count, lat, long) %>% 
+  filter(is.na(species_scientific))
+# therefore, lets drop all rows with NA scientific name
+seabirds_names_complete <- seabirds_correct_name %>% 
+  drop_na(species_scientific) #%>% 
+  #summarise(across(.fns = ~sum(is.na(.x))))
+
+###################  
+# Write the cleaned dataset to new csv file:
+  write.csv(seabirds_names_complete, file = "clean_data/seabirds_cleaned.csv")
+  
