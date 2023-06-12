@@ -77,8 +77,10 @@ seabirds_correct_name <- seabirds_observed %>%
   mutate(species_scientific = 
            str_remove(species_scientific, " (AD|JUV|IMM|SUBAD|PL[0-9])$"))
 ```
-  - Step 5, check missing data and drop NAs for all rows where no scientific name is given.
-  We at least need a scientific name to know which bird is seen!
+  - Step 5, check missing data and drop NAs for all rows where no scientific name is given
+            and where count is NA..
+  We drop these two NAs because a count is essential and we at least need a 
+  scientific name to know which bird is seen!
 ```{r}
 #check NAs for important columns
 seabirds_correct_name %>% 

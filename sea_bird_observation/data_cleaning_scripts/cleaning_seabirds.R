@@ -70,9 +70,10 @@ seabirds_correct_name %>%
 seabirds_correct_name %>% 
   select(species_common, species_scientific, species_abbreviation, count, lat, long) %>% 
   filter(is.na(species_scientific))
-# therefore, lets drop all rows with NA scientific name
+# therefore, lets drop all rows with NA scientific name and count
 seabirds_names_complete <- seabirds_correct_name %>% 
-  drop_na(species_scientific) #%>% 
+  drop_na(species_scientific) %>%
+  drop_na(count) #%>% 
   #summarise(across(.fns = ~sum(is.na(.x))))
 
 ###################  

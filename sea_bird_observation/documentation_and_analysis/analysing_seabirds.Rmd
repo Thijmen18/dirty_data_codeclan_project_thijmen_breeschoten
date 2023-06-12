@@ -46,7 +46,7 @@ seabirds %>%
   head(1)
 ```
 ### Answer:
-Larus bulleri - Black-billed gull - LARBUL - total count: 7732
+Puffinus tenuirostris - Short-tailed shearwater - PUFTEN - total count: 982553 sights!
 
 ##Analyses question 3
 Which bird had the highest total count above a latitude of -30?
@@ -88,12 +88,40 @@ seabirds %>%
   group_by(species_scientific, species_common, species_abbreviation) %>% 
   summarise(count_birds_individual_sights = sum(count)) %>% 
   arrange(count_birds_individual_sights) %>% 
-  filter(count_birds_individual_sights == 1)
+  filter(count_birds_individual_sights == 1) %>% 
+  nrow()
 
-
-
-  
 ```
 ### Answer:
 a total of 8 unique bird species (truly identified to species level) were ever only 
 observed in singletons.
+
+##Analyses question 5
+How many penguins were seen? (Hint: there are many types of penguin)
+
+```{r}
+# there are 6 penguin genera: 
+# Aptenodytes, Pygoscelis, Eudyptula, Spheniscus, Megadyptes, Eudyptes
+
+seabirds %>% 
+  select(species_scientific, species_common, species_abbreviation, count) %>% 
+  filter(str_detect(species_scientific, "Aptenodytes|Pygoscelis|Eudyptula|Spheniscus|Megadyptes|Eudyptes")) %>% 
+  group_by(species_scientific, species_common, species_abbreviation) %>% 
+  summarise(count_penguins_per_species = sum(count)) %>% 
+  arrange(count_penguins_per_species)  
+
+# In total 6 species (of which one species complex)
+
+seabirds %>% 
+  select(species_scientific, species_common, species_abbreviation, count) %>% 
+  filter(str_detect(species_scientific, "Aptenodytes|Pygoscelis|Eudyptula|Spheniscus|Megadyptes|Eudyptes")) %>% 
+  summarise(count_total_penguin_individuals = sum(count)) 
+
+# 154 individual penguins! 
+  
+  
+
+```
+### Answer:
+In total 6 species (of which one species complex)
+In total 154 penguin individuals
