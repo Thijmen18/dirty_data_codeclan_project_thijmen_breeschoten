@@ -29,27 +29,30 @@ view(candy_2017)
 
 #first simplify columns candy_2015
 #candy_2015_simple_names <- 
-  candy_2015 %>% 
+candy_new_2015 <-  candy_2015 %>% 
   rename("age" = 2,
   "participate" = 3) %>% 
   mutate(year = "2015", .before = Timestamp) %>% 
-  head()
-
+  janitor::clean_names()
 
 #secondly, candy_2016
-candy_2016 %>% 
+candy_new_2016 <- candy_2016 %>% 
   rename("age" = 4,
          "participate" = 2,
          "country" = 5,
          "address" = 6,
          "gender" = 3) %>% 
-  mutate(year = "2016", .before = Timestamp)
-
+  mutate(year = "2016", .before = Timestamp) %>% 
+  janitor::clean_names()
+  
 #thirdly, candy_2017
-candy_2017 %>% 
+candy_new_2017 <- candy_2017 %>% 
   rename("age" = 4,
          "participate" = 2,
          "country" = 5,
          "address" = 6,
          "gender" = 3) %>% 
-  mutate(year = "2017", .before = `Internal ID`)
+  mutate(year = "2017", .before = `Internal ID`) %>% 
+  janitor::clean_names() %>% 
+  rename_with(.cols = starts_with("q6"), .fn = ~ str_remove(., "q6_"))
+  
