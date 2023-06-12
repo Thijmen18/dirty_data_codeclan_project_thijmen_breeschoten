@@ -22,9 +22,24 @@ names(seabirds)
 seabirds %>% 
   select(species_scientific, species_common, species_abbreviation, count) %>% 
   filter(count == 1) %>% 
-  group_by(species_scientific) %>% 
+  group_by(species_scientific, species_common, species_abbreviation) %>% 
   summarise(count_birds_individual_sights = sum(count)) %>% 
   arrange(desc(count_birds_individual_sights))
 ```
+### Answer:
+Species with the highest individual counts is the species complex:
+Diomedea antipodensis / exulans, Wandering albatross sensu lato, DIOANTEXU
+-> 6508 exx.
 
+If we want to have the highest scoring true species:
+Pterodroma macroptera gouldi / Grey-faced petrel / PTEMACGOU
+-> 1023 exx.
+
+##Analyses question 2
+Which bird had the highest total count?
+```{r}
+seabirds %>% 
+  select(species_scientific, species_common, species_abbreviation, count) %>% 
+  
+```
 
