@@ -69,3 +69,31 @@ Puffinus pacificus - Wedge-tailed shearwater - PUFPAC - total count: 855
 ##Analyses question 4
 How many different types of birds were only ever seen in groups of 1?
 
+-> For this question I only want to look at observations on species level only.
+  I will filter out all 'species complexes', 'sensu lato's' and identifications 
+  on genus level.
+
+```{r}
+#-> For this question I only want to look at observations on species level only.
+#  I will filter out all 'species complexes', 'sensu lato's' and identifications 
+#  on genus level. (hence: triple filter)
+
+seabirds %>% 
+  filter(count == 1) %>% 
+  select(species_scientific, species_common, species_abbreviation, count) %>%
+  filter(!str_detect(species_common, "sensu lato")) %>% 
+  filter(str_detect(species_scientific, "[A-Z]{1}[a-z]* [a-z]*$")) %>% 
+  filter(!str_detect(species_common, "unidentified")) %>% 
+  filter(!str_detect(species_scientific, "\\/")) %>% 
+  group_by(species_scientific, species_common, species_abbreviation) %>% 
+  summarise(count_birds_individual_sights = sum(count)) %>% 
+  arrange(count_birds_individual_sights) %>% 
+  filter(count_birds_individual_sights == 1)
+
+
+
+  
+```
+### Answer:
+a total of 8 unique bird species (truly identified to species level) were ever only 
+observed in singletons.

@@ -125,6 +125,7 @@ seabirds_names_complete <- seabirds_correct_name %>%
   still a valid observation to leave in the dataset. But if a species name is asked
   as question I will not take these into account.
 -> I will explain the answer of each analyses question based on the assumption above.
+-> if needed I will filter out all "true" species identifications during the analyses
 
 ### analyses overview
 * Question 1 - Which bird had the most individual sightings?
