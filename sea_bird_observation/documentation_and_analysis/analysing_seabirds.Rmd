@@ -40,6 +40,32 @@ Which bird had the highest total count?
 ```{r}
 seabirds %>% 
   select(species_scientific, species_common, species_abbreviation, count) %>% 
-  
+  group_by(species_scientific, species_common, species_abbreviation) %>% 
+  summarise(total_count = sum(count)) %>% 
+  arrange(desc(total_count)) %>% 
+  head(1)
 ```
+### Answer:
+Larus bulleri - Black-billed gull - LARBUL - total count: 7732
+
+##Analyses question 3
+Which bird had the highest total count above a latitude of -30?
+
+-Note: Here I assume above a latitude of -30, that we look at counts done North of 
+      the -30 latitude (towards the equator = 0)
+
+```{r}
+seabirds %>% 
+  filter(lat > -30) %>% 
+  select(species_scientific, species_common, species_abbreviation, count) %>% 
+  group_by(species_scientific, species_common, species_abbreviation) %>% 
+  summarise(total_count = sum(count)) %>% 
+  arrange(desc(total_count)) %>% 
+  head(1)
+```
+### Answer:
+Puffinus pacificus - Wedge-tailed shearwater - PUFPAC - total count: 855
+
+##Analyses question 4
+How many different types of birds were only ever seen in groups of 1?
 
