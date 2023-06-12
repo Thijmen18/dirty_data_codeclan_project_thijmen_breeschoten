@@ -118,9 +118,6 @@ seabirds %>%
   summarise(count_total_penguin_individuals = sum(count)) 
 
 # 154 individual penguins! 
-  
-  
-
 ```
 ### Answer:
 In total 6 species (of which one species complex)

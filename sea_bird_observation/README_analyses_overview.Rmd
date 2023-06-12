@@ -114,8 +114,8 @@ seabirds_names_complete <- seabirds_correct_name %>%
   
 
 ### Assumptions / decisions
-1. -> Important assumption/ decision:
-  I have not removed double names/ and or Sensu Lato descriptions from the
+1. Important assumption/ decision:
+- I have not removed double names/ and or Sensu Lato descriptions from the
   observations list. In biology it is common not to be able to identify down to species
   but have a 'species complex' as a valid observation instead. If I decide to remove 
   one of the 'potential' species names I do increase the certainty about the observation,
@@ -126,11 +126,12 @@ seabirds_names_complete <- seabirds_correct_name %>%
   that the observer could only identify to genus level, not the species. This is 
   still a valid observation to leave in the dataset. But if a species name is asked
   as question I will not take these into account.
+  
 -> I will explain the answer of each analyses question based on the assumption above.
 -> if needed I will filter out all "true" species identifications during the analyses
 
-### analyses overview
-* Question 1 - Which bird had the most individual sightings?
+### analyses overview & answers
+**Question 1 - Which bird had the most individual sightings?**
   
 ```{r}
 seabirds %>% 
@@ -148,6 +149,86 @@ seabirds %>%
   If we want to have the highest scoring true species:
   Pterodroma macroptera gouldi / Grey-faced petrel / PTEMACGOU
   -> 1023 exx.
+  
+**Question 2 - Which bird had the highest total count?**
+
+```{r}
+seabirds %>% 
+  select(species_scientific, species_common, species_abbreviation, count) %>% 
+  group_by(species_scientific, species_common, species_abbreviation) %>% 
+  summarise(total_count = sum(count)) %>% 
+  arrange(desc(total_count)) %>% 
+  head(1)
+```
+  Answer:
+  Puffinus tenuirostris - Short-tailed shearwater - PUFTEN - total count: 982553 sights!
+
+**Question 3 - Which bird had the highest total count above a latitude of -30?**
+
+! Note: Here I assume above a latitude of -30, that we look at counts done North of 
+        the -30 latitude (towards the equator = 0)
+```{r}
+seabirds %>% 
+  filter(lat > -30) %>% 
+  select(species_scientific, species_common, species_abbreviation, count) %>% 
+  group_by(species_scientific, species_common, species_abbreviation) %>% 
+  summarise(total_count = sum(count)) %>% 
+  arrange(desc(total_count)) %>% 
+  head(1)
+```
+  Answer:
+  Puffinus pacificus - Wedge-tailed shearwater - PUFPAC - total count: 855
+
+**Question 4 - How many different types of birds were only ever seen in groups of 1?**
+
+! Note: For this question I only look at observations on species level only.
+        I will filter out all 'species complexes', 'sensu lato's' and identifications 
+        on genus level.
+```{r}
+seabirds %>% 
+  filter(count == 1) %>% 
+  select(species_scientific, species_common, species_abbreviation, count) %>%
+  filter(!str_detect(species_common, "sensu lato")) %>% 
+  filter(str_detect(species_scientific, "[A-Z]{1}[a-z]* [a-z]*$")) %>% 
+  filter(!str_detect(species_common, "unidentified")) %>% 
+  filter(!str_detect(species_scientific, "\\/")) %>% 
+  group_by(species_scientific, species_common, species_abbreviation) %>% 
+  summarise(count_birds_individual_sights = sum(count)) %>% 
+  arrange(count_birds_individual_sights) %>% 
+  filter(count_birds_individual_sights == 1) %>% 
+  nrow()
+```
+  Answer:
+  a total of 8 unique bird species (truly identified to species level) were ever only 
+  observed in singletons.
+
+**Question 5 - How many penguins were seen? (Hint: there are many types of penguin)**
+```{r}
+# there are 6 penguin genera: 
+# Aptenodytes, Pygoscelis, Eudyptula, Spheniscus, Megadyptes, Eudyptes
+
+seabirds %>% 
+  select(species_scientific, species_common, species_abbreviation, count) %>% 
+  filter(str_detect(species_scientific, "Aptenodytes|Pygoscelis|Eudyptula|Spheniscus|Megadyptes|Eudyptes")) %>% 
+  group_by(species_scientific, species_common, species_abbreviation) %>% 
+  summarise(count_penguins_per_species = sum(count)) %>% 
+  arrange(count_penguins_per_species)  
+
+# In total 6 species (of which one species complex)
+
+seabirds %>% 
+  select(species_scientific, species_common, species_abbreviation, count) %>% 
+  filter(str_detect(species_scientific, "Aptenodytes|Pygoscelis|Eudyptula|Spheniscus|Megadyptes|Eudyptes")) %>% 
+  summarise(count_total_penguin_individuals = sum(count)) 
+
+# 154 individual penguins! 
+```
+  Answer:
+  In total 6 species (of which one species complex)
+  In total 154 penguin individuals    
+
+
+
   
 
   
