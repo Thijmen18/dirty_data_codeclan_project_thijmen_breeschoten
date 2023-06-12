@@ -1,0 +1,30 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+# CodeClan dirty data project: sea bird observation
+# this script contains code to analyse the cleaned data set 'seabirds_cleaned.csv'
+# The cleaned dataset is cleaned using the script 'cleaning_seabirds.R'
+
+##Analyses question 1
+Which bird had the most individual sightings?
+  count the total observations for all birds, only for count=1
+  
+```{r}
+library(tidyverse)
+seabirds <- read_csv("../clean_data/seabirds_cleaned.csv")
+
+head(seabirds)
+names(seabirds)
+```
+```{r}
+seabirds %>% 
+  select(species_scientific, species_common, species_abbreviation, count) %>% 
+  filter(count == 1) %>% 
+  group_by(species_scientific) %>% 
+  summarise(count_birds_individual_sights = sum(count)) %>% 
+  arrange(desc(count_birds_individual_sights))
+```
+
+
