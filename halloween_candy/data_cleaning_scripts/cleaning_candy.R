@@ -66,7 +66,9 @@ candy_new_2017 <- candy_2017 %>%
 #setdiff(names(candy_new_2016), names(candy_new_2017))
 
 #######
-# STEP 2: lets drop columns in each dataset we do not need:
+# STEP 2: lets drop columns in each dataset we do not need and rename columns that 
+# are clearly spelled differently in another year.
+
 # for the analyses we need columns about/with: 
 # - 'participate(trick/treat)'
 # - 'age'
@@ -75,20 +77,22 @@ candy_new_2017 <- candy_2017 %>%
 # - 'gender'
 
 
-names(candy_new_2015)
+#names(candy_new_2015)
 candy_2015_reduced <- candy_new_2015 %>% 
   select(1:97) %>% # drop columns that are clearly not candy, uninformative or not needed
   select(-c(2, 8, 17, 18, 19, 24, 27, 28, 29, 34, 39, 40, 41, 42, 45, 46, 64, 67,
             82, 83, 85, 87, 89, 91, 94, 95, 96)) %>% 
-  select(-c(6, 11, 25))
+  select(-c(6, 11, 25)) %>% 
+  rename("100_grand_bar" = "x100_grand_bar")
 
-names(candy_new_2016)
+#names(candy_new_2016)
 candy_2016_reduced <- candy_new_2016 %>% 
   select(1:107) %>% 
   select(-c(2, 7, 9, 10, 13, 16, 20, 22, 23, 24, 27, 28, 30, 32, 33, 39, 44, 45,
-            46, 50, 79, 80, 90, 91, 94, 95, 97, 99, 102, 103, 104, 105, 106))
+            46, 50, 79, 80, 90, 91, 94, 95, 97, 99, 102, 103, 104, 105, 106)) %>% 
+  rename("100_grand_bar" = "x100_grand_bar")
 
-names(candy_new_2017)
+#names(candy_new_2017)
 candy_2017_reduced <- candy_new_2017 %>% 
   select(1:110) %>% 
   select(-c(2, 7, 10, 13, 16, 20, 22, 23, 24, 27, 28, 30, 32, 33, 39, 44, 45,
@@ -97,39 +101,63 @@ candy_2017_reduced <- candy_new_2017 %>%
   rename("mary_janes" = "anonymous_brown_globs_that_come_in_black_and_orange_wrappers_a_k_a_mary_janes")
 
 #######
+# STEP 4: lets transform each dataset into a long format (better to have all candy varieties into one variable)
+
+candy_2015_longer <- candy_2015_reduced %>% 
+  pivot_longer(cols = 4:67,
+               names_to = "candy_type",
+               values_to = "rating")
+
+candy_2016_longer <- candy_2016_reduced %>% 
+  pivot_longer(cols = 6:74,
+               names_to = "candy_type",
+               values_to = "rating")
+
+candy_2017_longer <- candy_2017_reduced %>% 
+  pivot_longer(cols = 6:76,
+               names_to = "candy_type",
+               values_to = "rating")
+
+#######
 # STEP 4: lets add a few impoprtant columns to the 2015 dataset that are missing: 
-candy_2015_add <- candy_2015_reduced %>% 
+candy_2015_add <- candy_2015_longer %>% 
   mutate(country = NA, 
          gender = NA,
-         .before = butterfinger)
+         .before = candy_type)
+
+#names(candy_2015_add)
+#names(candy_2016_longer)
+#names(candy_2017_longer)
+
+#######
+# STEP 5: lets combine all three datasets into a single file!
+
+candy_total <- bind_rows(candy_2015_add, candy_2016_longer, candy_2017_longer)
+
+names(candy_total)
+
+########
+# STEP 6: lets check if contents of each variable makes sense (or if cleaning is needed!)
+
+glimpse(candy_total)
+#year is a character, age is a character -> change into numerical
+candy_total_num <- candy_total %>% 
+  mutate(year = as.numeric(year)) %>% 
+  mutate(age = as.numeric(age))
+
+# let's check if there are any abnormal ages included. If so, round() or replace by NA
+# Assumption: I assume that any person between 3-100 years can fill in the questionnaire 
+# (potentially with help of supervisor), other ages are replaced by NA. 
+
+candy_total_num %>% 
+  mutate(age = if_else(age >= 3 & age <=100, age, NA)) %>% 
+  mutate(age = round(age)) #%>% 
+  #distinct(age)  
+  #print(n=85)
 
 
+test <- candy_total_num %>% 
+  select(age) %>% 
+  distinct(age)
+  
 
-janitor::compare_df_cols(candy_2015_add, candy_2016_reduced)
-
-
-
-
-setdiff(candy_2015_reduced, candy_2016_reduced)
-names(candy_2015_reduced)
-names(candy_2016_reduced)
-
-
-
-
-
-# STEP 3: Combine the datasets together now most columns are similar
-# first focus on df 2016 and 2017!
-
-# Because we do not want to loose columns in any df if not existing in another I 
-# will first 'fill in non-overlapping columns with NAs:
-candy_new_2016[setdiff(names(candy_new_2017), names(candy_new_2016))] <- NA
-candy_new_2017[setdiff(names(candy_new_2016), names(candy_new_2017))] <- NA
-
-candy_2016_2017 <- rbind(candy_new_2016, candy_new_2017)
-
-candy_2016_2017 %>% 
-  filter(year == 2017)
-
-class(candy_new_2017)
-candy_2016_2017 <- rbind(candy_new_2016, candy_new_2017)
