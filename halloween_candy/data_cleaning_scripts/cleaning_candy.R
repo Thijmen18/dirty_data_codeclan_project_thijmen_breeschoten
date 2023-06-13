@@ -79,7 +79,8 @@ names(candy_new_2015)
 candy_2015_reduced <- candy_new_2015 %>% 
   select(1:97) %>% # drop columns that are clearly not candy, uninformative or not needed
   select(-c(2, 8, 17, 18, 19, 24, 27, 28, 29, 34, 39, 40, 41, 42, 45, 46, 64, 67,
-            82, 83, 85, 87, 89, 91, 94, 95, 96))
+            82, 83, 85, 87, 89, 91, 94, 95, 96)) %>% 
+  select(-c(6, 11, 25))
 
 names(candy_new_2016)
 candy_2016_reduced <- candy_new_2016 %>% 
@@ -92,15 +93,19 @@ candy_2017_reduced <- candy_new_2017 %>%
   select(1:110) %>% 
   select(-c(2, 7, 10, 13, 16, 20, 22, 23, 24, 27, 28, 30, 32, 33, 39, 44, 45,
             50, 70, 80, 82, 87, 92, 93, 96, 97, 98, 100, 102, 105, 106, 107, 108,
-            109))
+            109)) %>% 
+  rename("mary_janes" = "anonymous_brown_globs_that_come_in_black_and_orange_wrappers_a_k_a_mary_janes")
 
 #######
 # STEP 4: lets add a few impoprtant columns to the 2015 dataset that are missing: 
-candy_2015_reduced %>% 
-  mutate()
+candy_2015_add <- candy_2015_reduced %>% 
+  mutate(country = NA, 
+         gender = NA,
+         .before = butterfinger)
 
 
-janitor::compare_df_cols(candy_2015_reduced, candy_2016_reduced)
+
+janitor::compare_df_cols(candy_2015_add, candy_2016_reduced)
 
 
 
