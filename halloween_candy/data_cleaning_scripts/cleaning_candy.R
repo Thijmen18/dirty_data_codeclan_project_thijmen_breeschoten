@@ -2,7 +2,7 @@
 # this script contains code to clean the raw data from files:
 # 'boing-boing-candy-2015' & 'boing-boing-candy-2016' & 'boing-boing-candy-2017'
 
-####### open & exploring data
+#######STEP 0: open & exploring data --------------------------------------
 library(tidyverse)
 library(readxl)
 
@@ -23,8 +23,8 @@ view(candy_2017)
 # generally most columns are existing in 3 files
 
 
-#########
-# STEP 1: lets get the column headers uniform!
+#########STEP 1: column header uniform --------------------------------------
+# lets get the column headers uniform!
 # and add a column at the start with the year (to keep years separate after combining)
 
 #first simplify columns candy_2015
@@ -65,8 +65,8 @@ candy_new_2017 <- candy_2017 %>%
 #setdiff(names(candy_new_2015), names(candy_new_2016))  
 #setdiff(names(candy_new_2016), names(candy_new_2017))
 
-#######
-# STEP 2: lets drop columns in each dataset we do not need and rename columns that 
+#######STEP 2: drop and rename columns --------------------------------------
+# lets drop columns in each dataset we do not need and rename columns that 
 # are clearly spelled differently in another year.
 
 # for the analyses we need columns about/with: 
@@ -100,8 +100,8 @@ candy_2017_reduced <- candy_new_2017 %>%
             109)) %>% 
   rename("mary_janes" = "anonymous_brown_globs_that_come_in_black_and_orange_wrappers_a_k_a_mary_janes")
 
-#######
-# STEP 4: lets transform each dataset into a long format (better to have all candy varieties into one variable)
+####### STEP 4: transform datasets into long format --------------------------------------
+# lets transform each dataset into a long format (better to have all candy varieties into one variable)
 
 candy_2015_longer <- candy_2015_reduced %>% 
   pivot_longer(cols = 4:67,
@@ -118,8 +118,8 @@ candy_2017_longer <- candy_2017_reduced %>%
                names_to = "candy_type",
                values_to = "rating")
 
-#######
-# STEP 4: lets add a few impoprtant columns to the 2015 dataset that are missing: 
+####### STEP 5: adding important columns to 2015 dataset --------------------------------------
+#  lets add a few impoprtant columns to the 2015 dataset that are missing: 
 candy_2015_add <- candy_2015_longer %>% 
   mutate(country = NA, 
          gender = NA,
@@ -129,35 +129,68 @@ candy_2015_add <- candy_2015_longer %>%
 #names(candy_2016_longer)
 #names(candy_2017_longer)
 
-#######
-# STEP 5: lets combine all three datasets into a single file!
+####### STEP 6: combining three datasets --------------------------------------
+# lets combine all three datasets into a single file!
 
 candy_total <- bind_rows(candy_2015_add, candy_2016_longer, candy_2017_longer)
 
 names(candy_total)
 
-########
-# STEP 6: lets check if contents of each variable makes sense (or if cleaning is needed!)
+######## STEP 7: check variable contents and clean --------------------------------------
+# lets check if contents of each variable makes sense (or if cleaning is needed!)
+# by checking with distinct(), I conclude that participate, gender, rating are all ok!
 
-glimpse(candy_total)
+#COUNTRY
+# Looking at distinct country values, it looks like age has been filled into 
+# country for several rows
+# lets change:
+candy_total_swap <- candy_total %>% 
+  mutate(age = if_else(age == is.na(age) &
+                         str_detect(country, "^[0-9]+"),
+                       country, age)
+  )
+candy_total %>% 
+  filter(country == str_detect(country, "[0-9]+")) %>% 
+  nrow()
+
+
 #year is a character, age is a character -> change into numerical
 candy_total_num <- candy_total %>% 
   mutate(year = as.numeric(year)) %>% 
   mutate(age = as.numeric(age))
 
+# AGE
 # let's check if there are any abnormal ages included. If so, round() or replace by NA
-# Assumption: I assume that any person between 3-100 years can fill in the questionnaire 
-# (potentially with help of supervisor), other ages are replaced by NA. 
-
-candy_total_num %>% 
+  # Assumption: I assume that any person between 3-100 years can fill in the questionnaire 
+  # (potentially with help of supervisor), other ages are replaced by NA. 
+candy_total_age_ok <- candy_total_num %>% 
   mutate(age = if_else(age >= 3 & age <=100, age, NA)) %>% 
   mutate(age = round(age)) #%>% 
   #distinct(age)  
   #print(n=85)
 
+# Looking at distinct country values, it looks like age has been filled into country for several rows
+# lets change:
+candy_total %>% 
+  mutate(age = if_else(age == is.na(age) &
+                         country == str_detect(country, "^[0-9]+"),
+                       country, age)
+  )
 
-test <- candy_total_num %>% 
-  select(age) %>% 
-  distinct(age)
+
+candy_total_age_ok %>% 
+  select(country) %>% 
+  group_by(country) %>% 
+  summarise(count = n())
+
+# variable: participate, gender, rating are all ok!
+  #candy_total_age_ok %>% 
+  #  distinct(participate)
+    #candy_total_age_ok %>% 
+    #  distinct(gender)
+      #candy_total_age_ok %>% 
+      #  distinct(rating)
+
+## It looks like in candy_2016 age column is mixed up with country column (age = NA, while country has an age)
   
 
