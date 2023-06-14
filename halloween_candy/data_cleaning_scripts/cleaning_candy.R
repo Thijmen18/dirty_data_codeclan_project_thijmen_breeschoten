@@ -246,7 +246,9 @@ candy_total_clean_variables <-
   mutate(age = if_else(age >= 3 & age <=100, age, NA)) %>% 
   mutate(age = round(age))
 
+#######STEP 8: write cleaned file to csv output --------------------------
 
+write.csv(candy_total_clean_variables, file = "clean_data/candy_cleaned.csv")
   
   
   
