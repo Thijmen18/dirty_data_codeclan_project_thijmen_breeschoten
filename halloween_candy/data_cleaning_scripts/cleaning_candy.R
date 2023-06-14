@@ -244,7 +244,10 @@ candy_total_clean_variables <-
 # (potentially with help of supervisor), other ages are replaced by NA. 
 
   mutate(age = if_else(age >= 3 & age <=100, age, NA)) %>% 
-  mutate(age = round(age))
+  mutate(age = round(age)) %>% 
+
+# and alter some differently spelled candy_types (which are the same thing)
+  mutate(candy_type = recode(candy_type, "dark_chocolate_hershey" = "hersheys_dark_chocolate"))
 
 #######STEP 8: write cleaned file to csv output --------------------------
 
