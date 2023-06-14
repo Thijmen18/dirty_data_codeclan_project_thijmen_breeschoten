@@ -121,7 +121,7 @@ candy_bars <- candy %>%
       candy_type %in% 
       c("hersheys_dark_chocolate", "coffee_crisp", "twix", "three_musketeers",
         "milky_way", "nestle_crunch", "butterfinger", "caramellos", "snickers",    
-        "hershey_s_milk_chocolate", "kit_kat", "mars"), 
+        "hershey_s_milk_chocolate", "kit_kat", "mars", "reese_s_peanut_butter_cups"), 
     TRUE, FALSE)
     ) %>% 
   filter(is_bar == TRUE) 
@@ -162,9 +162,9 @@ candy_bars %>%
 ```
 ### Answer:
 For each of joy, despair and meh, highest rating candy is:
-  Joy     -> kit_kat               - 7252 votes
-  Meh     -> 100_grand_bar         - 1307 votes
-  despair -> reggie_jackson_bar    - 4506 votes
+  Joy     -> reese_s_peanut_butter_cups     - 7369 votes
+  Meh     -> 100_grand_bar                  - 1307 votes
+  despair -> reggie_jackson_bar             - 4506 votes
 
 ## Question 5 - How many people rated Starburst as despair
 ```{r}
@@ -236,10 +236,49 @@ candy_bars_vote_count %>%
   head(1)
 ```
 ### Answer:
-The most popular candy bar by this rating system is for:
-- Male:                 kit_kat     - 1439 votes
-- Female:               kit_kat     - 766 votes
+The most popular candy bar by this rating system per gender is:
+- Male:                 reese_s_peanut_butter_cups	- 1443
+- Female:               reese_s_peanut_butter_cups  - 768 votes
 - Other:                twix        - 32 votes
 - I'd rather not say:   kit_kat     - 62 votes
 
-## Question 7 - 
+## Question 7 - What was the most popular candy bar in each year?
+
+```{r}
+#check 2015 first
+candy_bars_vote_count %>% 
+  filter(year == 2015) %>% 
+  group_by(candy_type) %>% 
+  summarise(total_vote_count = sum(vote)) %>% 
+  arrange(desc(total_vote_count)) %>% 
+  head(1)
+```
+```{r}
+candy_bars_vote_count %>% 
+  filter(year == 2016) %>% 
+  group_by(candy_type) %>% 
+  summarise(total_vote_count = sum(vote)) %>% 
+  arrange(desc(total_vote_count)) %>% 
+  head(1)
+```
+```{r}
+candy_bars_vote_count %>% 
+  filter(year == 2017) %>% 
+  group_by(candy_type) %>% 
+  summarise(total_vote_count = sum(vote)) %>% 
+  arrange(desc(total_vote_count)) %>% 
+  head(1)
+```
+### Answer:
+The most popular candy bar by this rating system per year is:
+- 2015: reese_s_peanut_butter_cups    - 4375
+- 2016: kit_kat                       - 920
+- 2017: reese_s_peanut_butter_cups    - 1403
+
+
+```{r}
+candy %>% 
+  distinct(candy_type) %>% 
+  print(200)
+```
+
