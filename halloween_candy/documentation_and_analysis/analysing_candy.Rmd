@@ -63,3 +63,127 @@ raw_data
   - ``boing-boing-candy-2015.xlsx`, `boing-boing-candy-2016.xlsx`,                       `boing-boing-candy-2017.xlsx` raw datasets in xlsx format.
   
 # 5. cleaning overview
+
+# 6. Important assumptions/decisions
+
+# 7. Analyses
+```{r}
+# open libraries and cleaned file
+library(tidyverse)
+candy <- read_csv("../clean_data/candy_cleaned.csv")
+#names(candy)
+head(candy)
+#glimpse(candy)
+```
+## Question 1 - What is the total number of candy ratings given across the three years. 
+(Number of  candy ratings, not the number of raters. Don’t count missing values)
+
+```{r}
+candy %>% 
+  filter(rating != is.na(rating)) %>% 
+  nrow()
+```
+### Answer:
+The total number of ratings (either meh, depspair or joy) for candy products is 524165
+
+## Question 2 - What was the average age of people who are going out trick or treating?
+
+```{r}
+candy %>% 
+  filter(participate == "Yes") %>% 
+  summarise(average_age_participating = mean(age, na.rm = TRUE))
+```
+### Answer:
+The average age of people participating is 35.22 years
+
+## Question 3 - What was the average age of people who are not going trick or treating
+
+```{r}
+candy %>% 
+  filter(participate == "No") %>% 
+  summarise(average_age_NOT_participating = mean(age, na.rm = TRUE))
+```
+### Answer:
+The average age of people NOT participating is 39.26 years
+
+## Question 4 - For each of joy, despair and meh, which candy bar received the most of these ratings
+```{r}
+#first important step is to indicate which candy types are actually bars,
+#we need to do some recoding:
+candy %>% 
+  mutate(is_bar = if_else(str_detect(candy_type, "bar"), TRUE, FALSE)) %>% 
+  mutate(is_bar = if_else(candy_type = ""))
+
+
+
+mutate(country = if_else(str_detect(country, "usa"), "us", country)) %>% 
+  
+```
+
+
+
+```{r}
+# First check for Joy:
+candy %>% 
+  select(candy_type, rating) %>% 
+  # filter for 'bar' only, because we only want to analyse candy bars
+  # we create an extra column indicating 
+  filter(candy_type == "bar")
+  filter(rating == "JOY") %>% 
+  group_by(candy_type) %>% 
+  summarise(total_joys_per_candy_type = n()) %>% 
+  arrange(desc(total_joys_per_candy_type)) %>% 
+  head(1)
+```
+```{r}
+# Secondly, check for despair:
+candy %>% 
+  select(candy_type, rating) %>% 
+  filter(rating == "DESPAIR") %>% 
+  group_by(candy_type) %>% 
+  summarise(total_joys_per_candy_type = n()) %>% 
+  arrange(desc(total_joys_per_candy_type)) %>% 
+  head(1)
+```
+
+```{r}
+# Thirdly, check for meh:
+candy %>% 
+  select(candy_type, rating) %>% 
+  filter(rating == "MEH") %>% 
+  group_by(candy_type) %>% 
+  summarise(total_joys_per_candy_type = n()) %>% 
+  arrange(desc(total_joys_per_candy_type)) %>% 
+  head(1)
+```
+### Answer:
+For each of joy, despair and meh, highest rating candy is:
+  Joy -> reese_s_peanut_butter_cups     - 7369 votes
+  Meh -> lollipops                      - 1570 votes
+  despair -> gum_from_baseball_cards    - 7341 votes
+
+
+```{r}
+candy %>% 
+  select(candy_type) %>% 
+  distinct(candy_type) %>% 
+  print(n=100)
+```
+
+hersheys_dark_chocolate
+coffee_crisp
+twix
+three_musketeers
+milky_way
+nestle_crunch
+butterfinger
+caramellos
+snickers
+dark_chocolate_hershey
+hershey_s_milk_chocolate
+kit_kat
+mars
+
+Check what to do with:
+dark_chocolate_hershey
+hersheys_dark_chocolate

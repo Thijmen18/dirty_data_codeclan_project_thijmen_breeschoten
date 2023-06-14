@@ -1811,10 +1811,162 @@ format.</p>
 </div>
 <div id="cleaning-overview" class="section level1">
 <h1>5. cleaning overview</h1>
+</div>
+<div id="important-assumptionsdecisions" class="section level1">
+<h1>6. Important assumptions/decisions</h1>
+</div>
+<div id="analyses" class="section level1">
+<h1>7. Analyses</h1>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6NiwibmNvbCI6OCwic3VtbWFyeSI6eyJBIHRpYmJsZSI6WyI2IMOXIDgiXX19LCJyZGYiOiJINHNJQUFBQUFBQUFBNlZUUFUvRE1CQjFtNCttZ1JRa0dQZ1RqVm9oSVRhS2hCZ1lRRUlnbFNseUVqZUVCanR5WEVFa0J2NEpmNUdab1hCSmZCRmtLbkNTL2U2ZWZmYTdpM045Tmo5MDV5NGh4Q0NtQWJNRkxyRnViODdIeDRTWWZRaDZ4Q1REQ3A5aGVROGNCOFlJaG4zeVRtcWJFWTJPeGwyTit4b1BDRnFkTjN0N2FmZ05zYzA3ZlczNERSR3NVbUxyQXZxWDRnOGVua0hJOEJQc0YvaS92RWJCZHJoU2lzbEZ5aE1tTmVkTko1TWdrWlRIUVVpUjNBb3pHaTJEQjVnS1RRMUN3WmRNRnUwT29WVEdnb2ptU0htaGVBNUVJR2xhcEx6b1hHMWNYTjF0cnZySFU3RTRmV1I0bnFOSjAvZjlLZm9sYTVVYk5HRW9NYWRTcFZHYVU0WFVJQklycm1TcFF6dGhQRzQ3NFViUWhESlFaWTdiYlVrVjlLcWpaeWpGazQrYXZPckRWZzhFZEg5MGhVY1pMVkE0a201TUZmVVhFdkloV25kU0JpSlhxYWk2MTY5K0RxdVQzSk1kWW1mRkt5WHhPTHBmOGVYNHFMcWdYbTdNMDc3OXpYZWFLL3Y0T0N3c2x2RWs1Vmk2bGRHUVpUb1lRY1Yxd1g0dVU2NndFbUFMWHdsRnM3YURJa09tcm8yc3Z3REtoZTJqRXdRQUFBPT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["...1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["year"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["age"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["participate"],"name":[4],"type":["chr"],"align":["left"]},{"label":["country"],"name":[5],"type":["chr"],"align":["left"]},{"label":["gender"],"name":[6],"type":["chr"],"align":["left"]},{"label":["candy_type"],"name":[7],"type":["chr"],"align":["left"]},{"label":["rating"],"name":[8],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"2015","3":"35","4":"No","5":"NA","6":"NA","7":"butterfinger","8":"JOY"},{"1":"2","2":"2015","3":"35","4":"No","5":"NA","6":"NA","7":"100_grand_bar","8":"NA"},{"1":"3","2":"2015","3":"35","4":"No","5":"NA","6":"NA","7":"black_jacks","8":"NA"},{"1":"4","2":"2015","3":"35","4":"No","5":"NA","6":"NA","7":"bonkers","8":"NA"},{"1":"5","2":"2015","3":"35","4":"No","5":"NA","6":"NA","7":"bottle_caps","8":"NA"},{"1":"6","2":"2015","3":"35","4":"No","5":"NA","6":"NA","7":"box_o_raisins","8":"NA"}],"options":{"columns":{"min":{},"max":[10],"total":[8]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<div id="question-1---what-is-the-total-number-of-candy-ratings-given-across-the-three-years." class="section level2">
+<h2>Question 1 - What is the total number of candy ratings given across
+the three years.</h2>
+<p>(Number of candy ratings, not the number of raters. Don’t count
+missing values)</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2FuZHkgJT4lIFxuICBmaWx0ZXIocmF0aW5nICE9IGlzLm5hKHJhdGluZykpICU+JSBcbiAgbnJvdygpXG5cbmBgYCJ9 -->
+<pre class="r"><code>candy %&gt;% 
+  filter(rating != is.na(rating)) %&gt;% 
+  nrow()
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDUyNDE2NVxuIn0= -->
+<pre><code>[1] 524165</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<div id="answer" class="section level3">
+<h3>Answer:</h3>
+<p>The total number of ratings (either meh, depspair or joy) for candy
+products is 524165</p>
+</div>
+</div>
+<div id="question-2---what-was-the-average-age-of-people-who-are-going-out-trick-or-treating" class="section level2">
+<h2>Question 2 - What was the average age of people who are going out
+trick or treating?</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6MSwibmNvbCI6MSwic3VtbWFyeSI6eyJBIHRpYmJsZSI6WyIxIMOXIDEiXX19LCJyZGYiOiJINHNJQUFBQUFBQUFBMTFRd1c3Q01BeDFTOE5FSlJBU0ovNWhyWVRZZ1NPSWlRK1lRT0kyZVNXVWFDV3AwZ0E3OGhlNzdDLzJmNEJUSlJKS0pNZjJpNS90bDQvMzdUVGRwZ0RRZ2FSRE42TVEyR2E5eW1ZQVNVeEpCQW4wclAraDUxRUxBQXlzbnkvK2t0ZmY1WDlReUNRZWVVUEI4QWtjNDVsckxQbW50UnExRVlXbzBRaFpCdXllVnBmY2QraVR4VmU2N25UQ01VV0ZUVGdtM2FIQmZLK0pUOWt0b0x5bzJnZ2xpUlJiSVN3Z1J6b0FoaWRwTjlsbHhlRWt2N1BKbTUzZ2ZnRGNlcEd6cDlqT2pPK3VGM085dWx5V1FuSy9mSVZmdkhMSmdDUzNpdk5hQzJtOEZFS2IzQ2lEdmk0dFZPV1JWaHpjSG5vZlB1ckFBUUFBIn0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["average_age_participating"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"35.21888"}],"options":{"columns":{"min":{},"max":[10],"total":[1]},"rows":{"min":[10],"max":[10],"total":[1]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<div id="answer-1" class="section level3">
+<h3>Answer:</h3>
+<p>The average age of people participating is 35.22 years</p>
+</div>
+</div>
+<div id="question-3---what-was-the-average-age-of-people-who-are-not-going-trick-or-treating" class="section level2">
+<h2>Question 3 - What was the average age of people who are not going
+trick or treating</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6MSwibmNvbCI6MSwic3VtbWFyeSI6eyJBIHRpYmJsZSI6WyIxIMOXIDEiXX19LCJyZGYiOiJINHNJQUFBQUFBQUFBMTFRVFdzQ01SQ2RYVGN0TGxRc1BmY243SUpJd2FQUTBxT0ZvdUJGWkZ6ak5yZ21TelorSFAwci90Q3FreVVCU1dBeU15OHpiK2JsOTJzK1RPY3BBSFFnNmRETktBUTJtMzVuSTRBa3BpU0NCTHJXbitqNXJRVUFldGFQUHkrSHkrTDFQeWhrRW5lOG9hRC9BTDdqZ1dzcytkTGE1R2U2ckZFYlVZZ2FqWkJsd05EVjZwaDdsaGV5K0V6WGpVNDRxcWl3Q1VlbGF6U1lielQxVTNZTldwNVZiWVNTMUJSYk1TeG9qblFBOVBmU2JyTE9pcis5M0dhRER6dkIvUUs0OVNKbkQ3R2RHZDhjRjNOY1QxeVdRbksvZklVclhybWtSNUpieFhtdGhUUmVDcUZOYnBSQlg1Y1dxdkpJS3c2dWQzazJLczNFQVFBQSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["average_age_NOT_participating"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"39.26143"}],"options":{"columns":{"min":{},"max":[10],"total":[1]},"rows":{"min":[10],"max":[10],"total":[1]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<div id="answer-2" class="section level3">
+<h3>Answer:</h3>
+<p>The average age of people NOT participating is 39.26 years</p>
+</div>
+</div>
+<div id="question-4---for-each-of-joy-despair-and-meh-which-candy-bar-received-the-most-of-these-ratings" class="section level2">
+<h2>Question 4 - For each of joy, despair and meh, which candy bar
+received the most of these ratings</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI2ZpcnN0IGltcG9ydGFudCBzdGVwIGlzIHRvIGluZGljYXRlIHdoaWNoIGNhbmR5IHR5cGVzIGFyZSBhY3R1YWxseSBiYXJzLFxuI3dlIG5lZWQgdG8gZG8gc29tZSByZWNvZGluZzpcbmNhbmR5ICU+JSBcbiAgbXV0YXRlKGlzX2JhciA9IGlmX2Vsc2Uoc3RyX2RldGVjdChjYW5keV90eXBlLCBcImJhclwiKSwgVFJVRSwgRkFMU0UpKSAlPiUgXG4gIG11dGF0ZShpc19iYXIgPSBpZl9lbHNlKGNhbmR5X3R5cGUgPSBcIlwiKSlcblxuXG5cbm11dGF0ZShjb3VudHJ5ID0gaWZfZWxzZShzdHJfZGV0ZWN0KGNvdW50cnksIFwidXNhXCIpLCBcInVzXCIsIGNvdW50cnkpKSAlPiUgXG4gIFxuYGBgIn0= -->
+<pre class="r"><code>#first important step is to indicate which candy types are actually bars,
+#we need to do some recoding:
+candy %&gt;% 
+  mutate(is_bar = if_else(str_detect(candy_type, &quot;bar&quot;), TRUE, FALSE)) %&gt;% 
+  mutate(is_bar = if_else(candy_type = &quot;&quot;))
+
+
+
+mutate(country = if_else(str_detect(country, &quot;usa&quot;), &quot;us&quot;, country)) %&gt;% 
+  </code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6MSwibmNvbCI6Miwic3VtbWFyeSI6eyJBIHRpYmJsZSI6WyIxIMOXIDIiXX19LCJyZGYiOiJINHNJQUFBQUFBQUFBMTFRMjA0RElSQ2Qwa1hUVFRSTmZOTDRDN3VKOFVYZlRUL0FhTkkzUW5kUlZ4RUlsOVI5OC9mOHFkYUJzbDRnQVdiT01HYzQ1LzV1ZlYydmF3Q1lRelhIazJJSTlQRmgxZHdBVkFTVEdWU3dpUGNIbHM4d2lPRHlUK0hDQ3VFRWM4d0lyb0pubStDOXNLd0x4bUgxSkwyRXk2K0NqaXIrTGx5bUlobXNPNjc2a2ZuUmlJeWNlKzI1Wks5NmpQekkrdnZnUDkvQzZtMDdjY2FoNUJPUFBhNXljQ2U1YzRXR3V1ZWV0MDhXK3pIYkZTM0gydmhCSzJ3aTBRQmFOTTlzQVN5RGlqL3BtKzRscUxmbTZqWk9PUGlRVnZZazdTa21oNWxrbjdsbzVqb1M2bmxRa3gxVThvMlFPVGxGeVVseGEreWcvQ1FGVWRjbTIzNWMxWEpDa2pqWWZRT3VRNDN3K0FFQUFBPT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["candy_type"],"name":[1],"type":["chr"],"align":["left"]},{"label":["total_joys_per_candy_type"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"reese_s_peanut_butter_cups","2":"7369"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[1]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6NiwibmNvbCI6Miwic3VtbWFyeSI6eyJBIHRpYmJsZSI6WyI2IMOXIDIiXX19LCJyZGYiOiJINHNJQUFBQUFBQUFBMTFSUzA3RE1CQ2RwazFSQTBVVkZTQWtydEFzeW9ZRElQWWdrTHF6bk1RdGFSMDdzbDNSN2pnUWNCOHV3Q0ZZTkl4ZG0wOGl6V1RtemZlTjcyOW1WOGtzQVlBdTlMcW9ZelFoZm55NG5Wd0Q5Q0owT3RDRGdmMXZNRHhHdzRJamxMNFBuQy9XRlprcldaR01hcFpSemtsT1ZhRjkrR1FwdDhSS1ZScFN5cUlVekVjT00wN3pGVm1pQ3NsSG1vbFNLc3dWSm1BRG8yakpFZHA0SUttb3dwWlVNSTNlMEswQ2wyOEFaKzhBcDU4b2R3RGpENVRYRm9kWTBNb1ZqUndQM3k2bm90Z1NzNjNEWWhkR0dzcnQwcHJVVEpFL0NmLzdEWlI4VGtOUHUwajBncXBwbXEvMjRKeFRIUVlITUNtb29lbGNZVDE2dTFiSmdheE5LUVVXUmZicWNhdTRvMXJBYUMzc0pzVWtmMXFMMVdRNnRSTmNmUDhOdmQzL1kwZjdtVkhqZThXK1Y1K0p4ZTg3eFp4bWpIdm5HQ2s3eG1tdDhKRUNGVVIxNnM3MmMxWEpBK0xJd2U0Yko0U2h0VzBDQUFBPSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["candy_type"],"name":[1],"type":["chr"],"align":["left"]},{"label":["total_joys_per_candy_type"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"gum_from_baseball_cards","2":"7341"},{"1":"joy_joy_mit_iodine","2":"5806"},{"1":"black_jacks","2":"5606"},{"1":"senior_mints","2":"5457"},{"1":"trail_mix","2":"5081"},{"1":"mary_janes","2":"5036"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6NiwibmNvbCI6Miwic3VtbWFyeSI6eyJBIHRpYmJsZSI6WyI2IMOXIDIiXX19LCJyZGYiOiJINHNJQUFBQUFBQUFBMTFRd1U3RE1Bek51cmF3U2tORE95RnUzRnNOZHVFREVCK0FRTm90U3R1c0RjdVNLc2tFdmZHSmZNeE9IRmFjTHBtMlJuSmlQOGZQejM1N1dTMlRWWUlRR3FOd0RIY0VMb28rM2wvVFo0VENBSUlSQ3RIRXZ0K1Fub05qd1JsWTdCSVRMamxuald5MEE1S2FxQklYUkpTdFEyNXpLVFpVYVd4cWVwR1lQaTRXdUZLQTRKd28vM3ZMQk10SnBiRmM0NkptSitKckNBcE9qYmFWdlFJVVA0RGNQZGd2MkQwWURCRHVCOUlqUWJaVU85bUJWOW5yd0tadHFFUHVqRFNFNDAvWmF0eFFoYzgrWFBKTmxQektQS2NWRXZ6QTFYWGQzN0J4d1luMmpUMllsTVNRYksyZ0hxTERvT1JLTm9aSkFVV0JYWFkwS0I2cEFURGJDYXVrVEl0Nkp6YnAwOUoyNlBQSE0zVitmT1lIeDU1QjU3Z2l4eFZUVVRIaDF4RnhrbFB1Z2hzWXVaODRheFFUeG84Q3FNNzZ0WjIyS3JsSCt1SFE0UitPMVRxTFpBSUFBQT09In0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["candy_type"],"name":[1],"type":["chr"],"align":["left"]},{"label":["total_joys_per_candy_type"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"lollipops","2":"1570"},{"1":"hard_candy","2":"1524"},{"1":"bonkers_the_candy","2":"1488"},{"1":"100_grand_bar","2":"1307"},{"1":"minibags_of_chips","2":"1285"},{"1":"chiclets","2":"1268"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<div id="answer-3" class="section level3">
+<h3>Answer:</h3>
+<p>For each of joy, despair and meh, highest rating candy is: Joy -&gt;
+reese_s_peanut_butter_cups - 7369 votes Meh -&gt; lollipops - 1570 votes
+despair -&gt; gum_from_baseball_cards - 7341 votes</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6ODQsIm5jb2wiOjEsInN1bW1hcnkiOnsiQSB0aWJibGUiOlsiODQgw5cgMSJdfX0sInJkZiI6Ikg0c0lBQUFBQUFBQUEyVlZiWTdiTmhEVmJ1ekc5dHFOczBHN1JlNndpN1JGZ1I0ZzZBR0tGTWkvQVVXTkpLNG9rdUJIdk1xdkhxaG56SGFra0pUc2hTRmFmRU1OWng3ZkRQLysrUG4zM2VkZFVSU3ZpdFVyR3RmMFdxei8rZlRYL1o5RnNicW15Vld4S3Jiai94T1ozMDFBVVJ6cCtSUU4reko0ajdZV3FrRWJzY092SHo1QVk1bXFvR1FKdkNrbDR4MDgwdUFpOUxyVXFrUHI4Z3J0dlVUZ3pDVG9VT29uMEdDWmNFSWxjRmVHc3FSMVRlZ2pjc3RaVlFZN0FMZllJMkRUNUxXY29pQmNXeFdSRFc4RmwrZ1hLeXpyVVVxZGtJMVRnaS9pK3JsaXRnUGVhcTRsOHdndG1Wb2NvblZWNmV6clVJZXZYd2N3eUhpTENUdzJXc1A0Y0JtY245MGVDS3RBZ1pHb2ZQSjJSMGxCYlhWUHpEa3NtWlJFaDYzY3d0d1BVQ0t6RHB3blhwcldRekRSdkcyUitYWkIrcnNZS3pqb2hIT01hRXV1ZnBsTnZaQ0wvQktublZBVldtaVpNUU8wd2hpZGpxMFRIanJtMDdGSjdMVWlWbGdPY3lNRk1TNTQ5cFhtb0xTSFNRaUpCRW03ZVBBMjFMVk15N2RTU3ltTXpqSlk5U3pUdHFQM2dXU2tjaWFibmcxcVFkSjJ5cWNLR2JpUnJLNEg4T01Zb2JlOVVLSmtqUU5kVStvaWIzWDdxTWs3UFQwbEtYUWxWRTdDa3E0RWZsY3dKVHl6dkRYaWlYajA0aWtDYTRWek9BZUtkSksxRFlxM0tTU2xUd3BHdXUxWjJBT2NXSXJ4dlVWMFNPZERlbEtCZUpzcURYakl3YTdKWlJiZi9qRW9vUzBGdnNBY3ZzQnV4c2trQnp5SEhvTkVjdzVKWkYveXFuMk1vNmRmeG9pVUlKa2R3VVVpeWkrQnZSVWxsVHBNdFpoRDE4dUtJMG41V1p0dkhSMnlGK2lBS3BOMHcxTHgvcFFOWFBla3VoTXk2Uk9uVytlWnBUYmdmSFo3UXZRaHgzSDBMVkVLZlhBZGVweVp2ejBudUp6RnRoMUxUQko5NldSWC9wVGY3d1pOZmNHZ01XaW5sQTN6WTJ3cGlkamR3TGQ0bHZxZW10cGxUOXR6WGRjNGlrUzRWTTI3bGtSOTl1VmRyRmtINXkwcG10OWs4OW5wenRVM0VISEw2dHYzb2tNWSt6VDlwNVJMR1hCNWVodUwxWEpPTEFxS3k5QkJERXQ4MTl1eHpWVnpYZXdWY3E1SjBmWE05ZHJnTExMRHBIQVN1RUEraTNFNk5hcFdteVc3OFlJVHdOUDgvU00xaUlFb3BJSWFHWjQ2YVMzWkY1MjJQamJrV3IwTThqZzJOWU0wSkltZTMzTnJSWXB6OFk1TFlMeEUvR0R3WXZuVzZ0TkQrdVJBei9XL05Edy9QLzkzNlpkTDVsNzRyWmhuRC9WNC9kRHMyOFVucjdYeFFwTkNpdXZ4NGwxZmZIeGxMNEJqVUdNazFUMXZnK3J1Zi90ajNDSGUyRVVNNzJxNnVlZjNxKzk3WGo5SFgrdm82d2RVemR6NTFwS1ZLT1BrUjBwNXl2akJXQko5U29WUTkrQzFaektUcG1WQ3B1U0tiLzhEeW8weFlIQUlBQUE9In0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["candy_type"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"butterfinger"},{"1":"100_grand_bar"},{"1":"black_jacks"},{"1":"bonkers"},{"1":"bottle_caps"},{"1":"box_o_raisins"},{"1":"bubble_gum"},{"1":"cadbury_creme_eggs"},{"1":"candy_corn"},{"1":"chiclets"},{"1":"caramellos"},{"1":"snickers"},{"1":"dark_chocolate_hershey"},{"1":"dots"},{"1":"fuzzy_peaches"},{"1":"goo_goo_clusters"},{"1":"good_n_plenty"},{"1":"gum_from_baseball_cards"},{"1":"gummy_bears_straight_up"},{"1":"heath_bar"},{"1":"hershey_s_kissables"},{"1":"hershey_s_milk_chocolate"},{"1":"kinder_happy_hippo"},{"1":"kit_kat"},{"1":"lemon_heads"},{"1":"licorice"},{"1":"licorice_not_black"},{"1":"lindt_truffle"},{"1":"lollipops"},{"1":"mars"},{"1":"mary_janes"},{"1":"maynards"},{"1":"milk_duds"},{"1":"laffy_taffy"},{"1":"minibags_of_chips"},{"1":"joy_joy_mit_iodine"},{"1":"reggie_jackson_bar"},{"1":"pixy_stix"},{"1":"nerds"},{"1":"nestle_crunch"},{"1":"nown_laters"},{"1":"milky_way"},{"1":"reese_s_peanut_butter_cups"},{"1":"runts"},{"1":"junior_mints"},{"1":"senior_mints"},{"1":"mint_kisses"},{"1":"mint_juleps"},{"1":"mint_leaves"},{"1":"peanut_m_m_s"},{"1":"regular_m_ms"},{"1":"mint_m_ms"},{"1":"ribbon_candy"},{"1":"rolos"},{"1":"skittles"},{"1":"smarties_american"},{"1":"smarties_commonwealth"},{"1":"starburst"},{"1":"sweetums"},{"1":"three_musketeers"},{"1":"peanut_butter_bars"},{"1":"trail_mix"},{"1":"twix"},{"1":"york_peppermint_patties"},{"1":"bonkers_the_candy"},{"1":"boxo_raisins"},{"1":"coffee_crisp"},{"1":"hard_candy"},{"1":"hersheys_dark_chocolate"},{"1":"hersheys_kisses"},{"1":"licorice_yes_black"},{"1":"mike_and_ike"},{"1":"blue_m_ms"},{"1":"red_m_ms"},{"1":"third_party_m_ms"},{"1":"mr_goodbar"},{"1":"necco_wafers"},{"1":"peeps"},{"1":"reeses_pieces"},{"1":"sweet_tarts"},{"1":"tic_tacs"},{"1":"jolly_ranchers_good_flavor"},{"1":"green_party_m_ms"},{"1":"independent_m_ms"}],"options":{"columns":{"min":{},"max":[10],"total":[1]},"rows":{"min":[10],"max":[10],"total":[84]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>hersheys_dark_chocolate coffee_crisp twix three_musketeers milky_way
+nestle_crunch butterfinger caramellos snickers dark_chocolate_hershey
+hershey_s_milk_chocolate kit_kat mars</p>
+<p>Check what to do with: dark_chocolate_hershey
+hersheys_dark_chocolate</p>
 <!-- rnb-text-end -->
 </div>
+</div>
+</div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyAxLiBJbnRyb2R1Y3Rpb24KCkFuYWx5c2VzIGZpbGUgZm9yIHRoZSBgQ29kZUNsYW4gLSBkaXJ0eSBkYXRhIHByb2plY3QgLSB0YXNrIDQ6IEhhbGxvd2VlbiBDYW5keQpUaGlqbWVuIEJyZWVzY2hvdGVuIApDb2RlQ2xhbiBQcm9mZXNzaW9uYWwgRGF0YSBBbmFseXNpcyBzdHVkZW50IGNvaG9ydCBERTIxClRoaXMgZmlsZSBkb2VzIHByb3ZpZGUgaW5mb3JtYXRpb24gcmVnYXJkaW5nIHRoZSBjbGVhbmluZy9hbmFseXNlcyBzdGVwcyB0YWtlbiBmb3IgCnRoZSAnRGlydHkgRGF0YScgcHJvamVjdCBIYWxsb3dlZW4gQ2FuZHkuCgojIDIuIE92ZXJ2aWV3CgpHb2FsIG9mIHRoZSBwcm9qZWN0IHRhc2sgaXMgdG8gY2xlYW4gYW5kIGFuYWx5c2UgYSByYXcgZGF0YXNldCBpbiBvcmRlciB0byBhbnN3ZXIgCnNldmVyYWwgcXVlc3Rpb25zIHJlZ2FyZGluZyB0aGUgZGF0YS4KVGhlIHJhdyBkYXRhIGNvbnRhaW5zIHJlc3VsdHMgZnJvbSBhIHF1ZXN0aW9ubmFpcmUgcmVnYXJkaW5nIGhhbGxvd2Vlbi90cmljayBvciB0cmVhdCBjYW5keS4KVGhlIHF1ZXN0aW9ubmFpcmVzIGFyZSB0YWtlbiBpbiB0aHJlZSBjb25zZWN1dGl2ZSB5ZWFycyAoMjAxNSwgMjAxNiwgMjAxNyksIGFuZAp0aGUgcmVzdWx0cyBjYW4gYmUgZm91bmQgaW4gdGhyZWUgc2VwYXJhdGUgLnhsc3ggZmlsZXM6Ci0gYGJvaW5nLWJvaW5nLWNhbmR5LTIwMTUueGxzeGAKLSBgYm9pbmctYm9pbmctY2FuZHktMjAxNi54bHN4YAotIGBib2luZy1ib2luZy1jYW5keS0yMDE3Lnhsc3hgCgpDb250ZW50cyBvZiB0aGlzIGZpbGU6CjEuIEludHJvZHVjdGlvbgoyLiBPdmVydmlldwozLiBMYW5ndWFnZSwgc29mdHdhcmUgYW5kIHBhY2thZ2VzIHVzZWQKNC4gRmlsZSBhbmQgZm9sZGVyIG92ZXJ2aWV3CjUuIGNsZWFuaW5nIG92ZXJ2aWV3CjYuIEFzc3VtcHRpb25zIC8gZGVjaXNpb25zCjcuIGFuYWx5c2VzIG92ZXJ2aWV3ICYgYW5zd2VycwoKIyAzLiBMYW5ndWFnZSwgc29mdHdhcmUgYW5kIHBhY2thZ2VzIHVzZWQKCiogVGhlIGNvZGUgaXMgd3JpdHRlbiBpbiBSICh2ZXJzaW9uIDQuMy4wKQogIFIgQ29yZSBUZWFtICgyMDIzKS4gX1I6IEEgTGFuZ3VhZ2UgYW5kIEVudmlyb25tZW50IGZvciBTdGF0aXN0aWNhbCBDb21wdXRpbmdfLiAKICBSIEZvdW5kYXRpb24gZm9yIFN0YXRpc3RpY2FsIENvbXB1dGluZywgVmllbm5hLCBBdXN0cmlhLgogICA8aHR0cHM6Ly93d3cuUi1wcm9qZWN0Lm9yZy8+CgoqIFIgaXMgcnVuIGluIFJzdHVkaW8gMjAyMy4wMy4wKzM4NiAKCiogVGhlIGZvbGxvd2luZyBsaWJyYXJpZXMgYXJlIHJlcXVpcmVkIChzcGVjaWZpZWQgcGVyIHNjcmlwdCk6CiAgY2xlYW5pbmdfY2FuZHkuUgogIC0gYHRpZHl2ZXJzZWAodmVyIDIuMC4wKQogIC0gYHJlYWR4bGAgKHZlciAxLjQuMikKICBhbmFseXNpbmdfY2FuZHkuUm1kCiAgLSBgdGlkeXZlcnNlYCh2ZXIgMi4wLjApCiAgCiMgNC4gRmlsZSBhbmQgZm9sZGVyIG92ZXJ2aWV3ClRoZSBScHJvamVjdCBmb2xkZXIgYGhhbGxvd2Vlbl9jYW5keWAgY29udGFpbnMgdGhlIC5ScHJvaiBmaWxlIGFuZCB0aGUgZm9sbG93aW5nIApmb2xkZXJzLgpUaGUgZm9sbG93aW5nIGZpbGVzIGFyZSBpbmNsdWRlZCBhbmQgZGlzdHJpYnV0ZWQgaW4gZWFjaCBmb2xkZXI6CgpjbGVhbl9kYXRhCiAgLSBgY2FuZHlfY2xlYW5lZC5jc3ZgIGNsZWFuZWQgZGF0YXNldCB1c2luZyBzY3JpcHQgJ2NsZWFuaW5nX2NhbmR5LlInCmRhdGFfY2xlYW5pbmdfc2NyaXB0cwogIC0gYGNsZWFuaW5nX2NhbmR5LlJgIFJzY3JpcHQgdG8gcmVhZCBhbmQgY2xlYW4gdGhlIHJhdyBkYXRhIGZpbGUuCmRvY3VtZW50YXRpb25fYW5kX2FuYWx5c2lzCiAgLSBgYW5hbHlzaW5nX2NhbmR5LlJtZGAgKGFuZCBrbml0dGVkIGh0bWwgZmlsZSkgUm5vdGVib29rIHNjcmlwdCBwcmVzZW50aW5nIGFuIAogIG92ZXJ2aWV3IGFuZCBiYWNrZ3JvdW5kIGluZm9ybWF0aW9uIHJlZ2FyZGluZyB0aGUgcHJvamVjdCBhbmQgYW5hbHlzZXMuIEl0IGZ1cnRoZXIgICBwcmVzZW50cyB0aGUgc2NyaXB0L2NvZGUgdG8gYW5hbHlzZSB0aGUgY2xlYW5lZCBkYXRhc2V0IGluIG9yZGVyIHRvIGFuc3dlciB0aGUgICAgICAgYW5hbHlzZXMgcXVlc3Rpb25zLgpyYXdfZGF0YQogIC0gYGBib2luZy1ib2luZy1jYW5keS0yMDE1Lnhsc3hgLCBgYm9pbmctYm9pbmctY2FuZHktMjAxNi54bHN4YCwgICAgICAgICAgICAgICAgICAgICAgIGBib2luZy1ib2luZy1jYW5keS0yMDE3Lnhsc3hgIHJhdyBkYXRhc2V0cyBpbiB4bHN4IGZvcm1hdC4KICAKIyA1LiBjbGVhbmluZyBvdmVydmlldw==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyAxLiBJbnRyb2R1Y3Rpb24KCkFuYWx5c2VzIGZpbGUgZm9yIHRoZSBgQ29kZUNsYW4gLSBkaXJ0eSBkYXRhIHByb2plY3QgLSB0YXNrIDQ6IEhhbGxvd2VlbiBDYW5keQpUaGlqbWVuIEJyZWVzY2hvdGVuIApDb2RlQ2xhbiBQcm9mZXNzaW9uYWwgRGF0YSBBbmFseXNpcyBzdHVkZW50IGNvaG9ydCBERTIxClRoaXMgZmlsZSBkb2VzIHByb3ZpZGUgaW5mb3JtYXRpb24gcmVnYXJkaW5nIHRoZSBjbGVhbmluZy9hbmFseXNlcyBzdGVwcyB0YWtlbiBmb3IgCnRoZSAnRGlydHkgRGF0YScgcHJvamVjdCBIYWxsb3dlZW4gQ2FuZHkuCgojIDIuIE92ZXJ2aWV3CgpHb2FsIG9mIHRoZSBwcm9qZWN0IHRhc2sgaXMgdG8gY2xlYW4gYW5kIGFuYWx5c2UgYSByYXcgZGF0YXNldCBpbiBvcmRlciB0byBhbnN3ZXIgCnNldmVyYWwgcXVlc3Rpb25zIHJlZ2FyZGluZyB0aGUgZGF0YS4KVGhlIHJhdyBkYXRhIGNvbnRhaW5zIHJlc3VsdHMgZnJvbSBhIHF1ZXN0aW9ubmFpcmUgcmVnYXJkaW5nIGhhbGxvd2Vlbi90cmljayBvciB0cmVhdCBjYW5keS4KVGhlIHF1ZXN0aW9ubmFpcmVzIGFyZSB0YWtlbiBpbiB0aHJlZSBjb25zZWN1dGl2ZSB5ZWFycyAoMjAxNSwgMjAxNiwgMjAxNyksIGFuZAp0aGUgcmVzdWx0cyBjYW4gYmUgZm91bmQgaW4gdGhyZWUgc2VwYXJhdGUgLnhsc3ggZmlsZXM6Ci0gYGJvaW5nLWJvaW5nLWNhbmR5LTIwMTUueGxzeGAKLSBgYm9pbmctYm9pbmctY2FuZHktMjAxNi54bHN4YAotIGBib2luZy1ib2luZy1jYW5keS0yMDE3Lnhsc3hgCgpDb250ZW50cyBvZiB0aGlzIGZpbGU6CjEuIEludHJvZHVjdGlvbgoyLiBPdmVydmlldwozLiBMYW5ndWFnZSwgc29mdHdhcmUgYW5kIHBhY2thZ2VzIHVzZWQKNC4gRmlsZSBhbmQgZm9sZGVyIG92ZXJ2aWV3CjUuIGNsZWFuaW5nIG92ZXJ2aWV3CjYuIEFzc3VtcHRpb25zIC8gZGVjaXNpb25zCjcuIGFuYWx5c2VzIG92ZXJ2aWV3ICYgYW5zd2VycwoKIyAzLiBMYW5ndWFnZSwgc29mdHdhcmUgYW5kIHBhY2thZ2VzIHVzZWQKCiogVGhlIGNvZGUgaXMgd3JpdHRlbiBpbiBSICh2ZXJzaW9uIDQuMy4wKQogIFIgQ29yZSBUZWFtICgyMDIzKS4gX1I6IEEgTGFuZ3VhZ2UgYW5kIEVudmlyb25tZW50IGZvciBTdGF0aXN0aWNhbCBDb21wdXRpbmdfLiAKICBSIEZvdW5kYXRpb24gZm9yIFN0YXRpc3RpY2FsIENvbXB1dGluZywgVmllbm5hLCBBdXN0cmlhLgogICA8aHR0cHM6Ly93d3cuUi1wcm9qZWN0Lm9yZy8+CgoqIFIgaXMgcnVuIGluIFJzdHVkaW8gMjAyMy4wMy4wKzM4NiAKCiogVGhlIGZvbGxvd2luZyBsaWJyYXJpZXMgYXJlIHJlcXVpcmVkIChzcGVjaWZpZWQgcGVyIHNjcmlwdCk6CiAgY2xlYW5pbmdfY2FuZHkuUgogIC0gYHRpZHl2ZXJzZWAodmVyIDIuMC4wKQogIC0gYHJlYWR4bGAgKHZlciAxLjQuMikKICBhbmFseXNpbmdfY2FuZHkuUm1kCiAgLSBgdGlkeXZlcnNlYCh2ZXIgMi4wLjApCiAgCiMgNC4gRmlsZSBhbmQgZm9sZGVyIG92ZXJ2aWV3ClRoZSBScHJvamVjdCBmb2xkZXIgYGhhbGxvd2Vlbl9jYW5keWAgY29udGFpbnMgdGhlIC5ScHJvaiBmaWxlIGFuZCB0aGUgZm9sbG93aW5nIApmb2xkZXJzLgpUaGUgZm9sbG93aW5nIGZpbGVzIGFyZSBpbmNsdWRlZCBhbmQgZGlzdHJpYnV0ZWQgaW4gZWFjaCBmb2xkZXI6CgpjbGVhbl9kYXRhCiAgLSBgY2FuZHlfY2xlYW5lZC5jc3ZgIGNsZWFuZWQgZGF0YXNldCB1c2luZyBzY3JpcHQgJ2NsZWFuaW5nX2NhbmR5LlInCmRhdGFfY2xlYW5pbmdfc2NyaXB0cwogIC0gYGNsZWFuaW5nX2NhbmR5LlJgIFJzY3JpcHQgdG8gcmVhZCBhbmQgY2xlYW4gdGhlIHJhdyBkYXRhIGZpbGUuCmRvY3VtZW50YXRpb25fYW5kX2FuYWx5c2lzCiAgLSBgYW5hbHlzaW5nX2NhbmR5LlJtZGAgKGFuZCBrbml0dGVkIGh0bWwgZmlsZSkgUm5vdGVib29rIHNjcmlwdCBwcmVzZW50aW5nIGFuIAogIG92ZXJ2aWV3IGFuZCBiYWNrZ3JvdW5kIGluZm9ybWF0aW9uIHJlZ2FyZGluZyB0aGUgcHJvamVjdCBhbmQgYW5hbHlzZXMuIEl0IGZ1cnRoZXIgICBwcmVzZW50cyB0aGUgc2NyaXB0L2NvZGUgdG8gYW5hbHlzZSB0aGUgY2xlYW5lZCBkYXRhc2V0IGluIG9yZGVyIHRvIGFuc3dlciB0aGUgICAgICAgYW5hbHlzZXMgcXVlc3Rpb25zLgpyYXdfZGF0YQogIC0gYGBib2luZy1ib2luZy1jYW5keS0yMDE1Lnhsc3hgLCBgYm9pbmctYm9pbmctY2FuZHktMjAxNi54bHN4YCwgICAgICAgICAgICAgICAgICAgICAgIGBib2luZy1ib2luZy1jYW5keS0yMDE3Lnhsc3hgIHJhdyBkYXRhc2V0cyBpbiB4bHN4IGZvcm1hdC4KICAKIyA1LiBjbGVhbmluZyBvdmVydmlldwoKIyA2LiBJbXBvcnRhbnQgYXNzdW1wdGlvbnMvZGVjaXNpb25zCgojIDcuIEFuYWx5c2VzCmBgYHtyfQojIG9wZW4gbGlicmFyaWVzIGFuZCBjbGVhbmVkIGZpbGUKbGlicmFyeSh0aWR5dmVyc2UpCmNhbmR5IDwtIHJlYWRfY3N2KCIuLi9jbGVhbl9kYXRhL2NhbmR5X2NsZWFuZWQuY3N2IikKI25hbWVzKGNhbmR5KQpoZWFkKGNhbmR5KQojZ2xpbXBzZShjYW5keSkKYGBgCiMjIFF1ZXN0aW9uIDEgLSBXaGF0IGlzIHRoZSB0b3RhbCBudW1iZXIgb2YgY2FuZHkgcmF0aW5ncyBnaXZlbiBhY3Jvc3MgdGhlIHRocmVlIHllYXJzLiAKKE51bWJlciBvZiAgY2FuZHkgcmF0aW5ncywgbm90IHRoZSBudW1iZXIgb2YgcmF0ZXJzLiBEb27igJl0IGNvdW50IG1pc3NpbmcgdmFsdWVzKQoKYGBge3J9CmNhbmR5ICU+JSAKICBmaWx0ZXIocmF0aW5nICE9IGlzLm5hKHJhdGluZykpICU+JSAKICBucm93KCkKYGBgCiMjIyBBbnN3ZXI6ClRoZSB0b3RhbCBudW1iZXIgb2YgcmF0aW5ncyAoZWl0aGVyIG1laCwgZGVwc3BhaXIgb3Igam95KSBmb3IgY2FuZHkgcHJvZHVjdHMgaXMgNTI0MTY1CgojIyBRdWVzdGlvbiAyIC0gV2hhdCB3YXMgdGhlIGF2ZXJhZ2UgYWdlIG9mIHBlb3BsZSB3aG8gYXJlIGdvaW5nIG91dCB0cmljayBvciB0cmVhdGluZz8KCmBgYHtyfQpjYW5keSAlPiUgCiAgZmlsdGVyKHBhcnRpY2lwYXRlID09ICJZZXMiKSAlPiUgCiAgc3VtbWFyaXNlKGF2ZXJhZ2VfYWdlX3BhcnRpY2lwYXRpbmcgPSBtZWFuKGFnZSwgbmEucm0gPSBUUlVFKSkKYGBgCiMjIyBBbnN3ZXI6ClRoZSBhdmVyYWdlIGFnZSBvZiBwZW9wbGUgcGFydGljaXBhdGluZyBpcyAzNS4yMiB5ZWFycwoKIyMgUXVlc3Rpb24gMyAtIFdoYXQgd2FzIHRoZSBhdmVyYWdlIGFnZSBvZiBwZW9wbGUgd2hvIGFyZSBub3QgZ29pbmcgdHJpY2sgb3IgdHJlYXRpbmcKCmBgYHtyfQpjYW5keSAlPiUgCiAgZmlsdGVyKHBhcnRpY2lwYXRlID09ICJObyIpICU+JSAKICBzdW1tYXJpc2UoYXZlcmFnZV9hZ2VfTk9UX3BhcnRpY2lwYXRpbmcgPSBtZWFuKGFnZSwgbmEucm0gPSBUUlVFKSkKYGBgCiMjIyBBbnN3ZXI6ClRoZSBhdmVyYWdlIGFnZSBvZiBwZW9wbGUgTk9UIHBhcnRpY2lwYXRpbmcgaXMgMzkuMjYgeWVhcnMKCiMjIFF1ZXN0aW9uIDQgLSBGb3IgZWFjaCBvZiBqb3ksIGRlc3BhaXIgYW5kIG1laCwgd2hpY2ggY2FuZHkgYmFyIHJlY2VpdmVkIHRoZSBtb3N0IG9mIHRoZXNlIHJhdGluZ3MKYGBge3J9CiNmaXJzdCBpbXBvcnRhbnQgc3RlcCBpcyB0byBpbmRpY2F0ZSB3aGljaCBjYW5keSB0eXBlcyBhcmUgYWN0dWFsbHkgYmFycywKI3dlIG5lZWQgdG8gZG8gc29tZSByZWNvZGluZzoKY2FuZHkgJT4lIAogIG11dGF0ZShpc19iYXIgPSBpZl9lbHNlKHN0cl9kZXRlY3QoY2FuZHlfdHlwZSwgImJhciIpLCBUUlVFLCBGQUxTRSkpICU+JSAKICBtdXRhdGUoaXNfYmFyID0gaWZfZWxzZShjYW5keV90eXBlID0gIiIpKQoKCgptdXRhdGUoY291bnRyeSA9IGlmX2Vsc2Uoc3RyX2RldGVjdChjb3VudHJ5LCAidXNhIiksICJ1cyIsIGNvdW50cnkpKSAlPiUgCiAgCmBgYAoKCgpgYGB7cn0KIyBGaXJzdCBjaGVjayBmb3IgSm95OgpjYW5keSAlPiUgCiAgc2VsZWN0KGNhbmR5X3R5cGUsIHJhdGluZykgJT4lIAogICMgZmlsdGVyIGZvciAnYmFyJyBvbmx5LCBiZWNhdXNlIHdlIG9ubHkgd2FudCB0byBhbmFseXNlIGNhbmR5IGJhcnMKICAjIHdlIGNyZWF0ZSBhbiBleHRyYSBjb2x1bW4gaW5kaWNhdGluZyAKICBmaWx0ZXIoY2FuZHlfdHlwZSA9PSAiYmFyIikKICBmaWx0ZXIocmF0aW5nID09ICJKT1kiKSAlPiUgCiAgZ3JvdXBfYnkoY2FuZHlfdHlwZSkgJT4lIAogIHN1bW1hcmlzZSh0b3RhbF9qb3lzX3Blcl9jYW5keV90eXBlID0gbigpKSAlPiUgCiAgYXJyYW5nZShkZXNjKHRvdGFsX2pveXNfcGVyX2NhbmR5X3R5cGUpKSAlPiUgCiAgaGVhZCgxKQpgYGAKYGBge3J9CiMgU2Vjb25kbHksIGNoZWNrIGZvciBkZXNwYWlyOgpjYW5keSAlPiUgCiAgc2VsZWN0KGNhbmR5X3R5cGUsIHJhdGluZykgJT4lIAogIGZpbHRlcihyYXRpbmcgPT0gIkRFU1BBSVIiKSAlPiUgCiAgZ3JvdXBfYnkoY2FuZHlfdHlwZSkgJT4lIAogIHN1bW1hcmlzZSh0b3RhbF9qb3lzX3Blcl9jYW5keV90eXBlID0gbigpKSAlPiUgCiAgYXJyYW5nZShkZXNjKHRvdGFsX2pveXNfcGVyX2NhbmR5X3R5cGUpKSAlPiUgCiAgaGVhZCgxKQpgYGAKCmBgYHtyfQojIFRoaXJkbHksIGNoZWNrIGZvciBtZWg6CmNhbmR5ICU+JSAKICBzZWxlY3QoY2FuZHlfdHlwZSwgcmF0aW5nKSAlPiUgCiAgZmlsdGVyKHJhdGluZyA9PSAiTUVIIikgJT4lIAogIGdyb3VwX2J5KGNhbmR5X3R5cGUpICU+JSAKICBzdW1tYXJpc2UodG90YWxfam95c19wZXJfY2FuZHlfdHlwZSA9IG4oKSkgJT4lIAogIGFycmFuZ2UoZGVzYyh0b3RhbF9qb3lzX3Blcl9jYW5keV90eXBlKSkgJT4lIAogIGhlYWQoMSkKYGBgCiMjIyBBbnN3ZXI6CkZvciBlYWNoIG9mIGpveSwgZGVzcGFpciBhbmQgbWVoLCBoaWdoZXN0IHJhdGluZyBjYW5keSBpczoKICBKb3kgLT4gcmVlc2Vfc19wZWFudXRfYnV0dGVyX2N1cHMgICAgIC0gNzM2OSB2b3RlcwogIE1laCAtPiBsb2xsaXBvcHMgICAgICAgICAgICAgICAgICAgICAgLSAxNTcwIHZvdGVzCiAgZGVzcGFpciAtPiBndW1fZnJvbV9iYXNlYmFsbF9jYXJkcyAgICAtIDczNDEgdm90ZXMKCgpgYGB7cn0KY2FuZHkgJT4lIAogIHNlbGVjdChjYW5keV90eXBlKSAlPiUgCiAgZGlzdGluY3QoY2FuZHlfdHlwZSkgJT4lIAogIHByaW50KG49MTAwKQpgYGAKCmhlcnNoZXlzX2RhcmtfY2hvY29sYXRlCmNvZmZlZV9jcmlzcAp0d2l4CnRocmVlX211c2tldGVlcnMKbWlsa3lfd2F5Cm5lc3RsZV9jcnVuY2gKYnV0dGVyZmluZ2VyCmNhcmFtZWxsb3MKc25pY2tlcnMKZGFya19jaG9jb2xhdGVfaGVyc2hleQpoZXJzaGV5X3NfbWlsa19jaG9jb2xhdGUKa2l0X2thdAptYXJzCgpDaGVjayB3aGF0IHRvIGRvIHdpdGg6CmRhcmtfY2hvY29sYXRlX2hlcnNoZXkKaGVyc2hleXNfZGFya19jaG9jb2xhdGU=</div>
 
 
 
