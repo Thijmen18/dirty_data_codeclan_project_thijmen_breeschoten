@@ -275,10 +275,46 @@ The most popular candy bar by this rating system per year is:
 - 2016: kit_kat                       - 920
 - 2017: reese_s_peanut_butter_cups    - 1403
 
-
+## Question 8 - What was the most popular candy bar by this rating for people in US, Canada, UK, and all other countries?
 ```{r}
-candy %>% 
-  distinct(candy_type) %>% 
-  print(200)
+# lets check for US:
+candy_bars_vote_count %>% 
+  filter(country == "us") %>% 
+  group_by(candy_type) %>% 
+  summarise(total_vote_count = sum(vote)) %>% 
+  arrange(desc(total_vote_count)) %>% 
+  head(1)
 ```
-
+```{r}
+# lets check for Canada:
+candy_bars_vote_count %>% 
+  filter(country == "canada") %>% 
+  group_by(candy_type) %>% 
+  summarise(total_vote_count = sum(vote)) %>% 
+  arrange(desc(total_vote_count)) %>% 
+  head(1)
+```
+```{r}
+# lets check for UK:
+candy_bars_vote_count %>% 
+  filter(country == "uk") %>% 
+  group_by(candy_type) %>% 
+  summarise(total_vote_count = sum(vote)) %>% 
+  arrange(desc(total_vote_count)) %>% 
+  head(1)
+```
+```{r}
+# lets check for all other countries:
+candy_bars_vote_count %>% 
+  filter(country != "uk" & country != "us" & country != "canada") %>% 
+  group_by(candy_type) %>% 
+  summarise(total_vote_count = sum(vote)) %>% 
+  arrange(desc(total_vote_count)) %>% 
+  head(1)
+```
+### Answer:
+The most popular candy bar by this rating system per country is:
+- US:                 reese_s_peanut_butter_cups    -	1982
+- UK:                 milky_way	                    - 31
+- Canada:             kit_kat	                      - 231
+- other countries:    kit_kat                       - 49
