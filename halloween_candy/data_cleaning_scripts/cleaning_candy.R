@@ -123,16 +123,14 @@ candy_2015_add <- candy_2015_longer %>%
          gender = NA,
          .before = candy_type)
 
-#names(candy_2015_add)
-#names(candy_2016_longer)
-#names(candy_2017_longer)
+
 
 ####### STEP 6: combining three datasets --------------------------------------
 # lets combine all three datasets into a single file!
 
 candy_total <- bind_rows(candy_2015_add, candy_2016_longer, candy_2017_longer)
 
-names(candy_total)
+             
 
 ######## STEP 7: check variable contents and clean --------------------------------------
 # lets check if contents of each variable makes sense (or if cleaning is needed!)
@@ -143,49 +141,51 @@ names(candy_total)
 # country for several rows
 # lets change:
 
-candy_total %>% 
+candy_total_clean_variables <- 
+  candy_total %>% 
   mutate(age = if_else(is.na(age) & 
                          str_detect(country, "^[0-9]+"),
                        country, age)
-         ) 
+         ) %>% 
+  
 # in country column there are various non-sensible answers. Let's clean.
 # Assumptions/decissions: the analyses questions refer to "US, Canada, UK and other countries"
 # so all countries with different spelling should be changed into single way of spelling.
 # nonsense names are transformed to NA, and existing "other countries/areas" will be left as
 # they appear, because I can bin them into a single category. First recode all to lower case.
 
-candy_total %>% 
   mutate(country = str_to_lower(country)) %>% 
-  mutate(country = recode(country, "not the usa or canada" = NA, .default = country)) %>% 
-  mutate(country = if_else(str_detect(country, "usa"), "us", country))
+  mutate(country = if_else(str_detect(country, "^[0-9]+"), NA, country)) %>% 
+  mutate(country = recode(country, "not the usa or canada" = NA_character_)) %>% 
+  mutate(country = if_else(str_detect(country, "usa"), "us", country)) %>% 
   mutate(country = recode(country,
                           "united states of america" = "us",
                           "united states" = "us",
                           "ussa" = "us",
                           "u.s.a." = "us",
-                          "a tropical island south of the equator" = NA,
+                          "a tropical island south of the equator" = NA_character_,
                           "england" = "uk",
                           "murica" = "us",
                           "united kingdom" = "uk",
-                          "neverland" = NA,
-                          "this one" = NA,
+                          "neverland" = NA_character_,
+                          "this one" = NA_character_,
                           "u.s." = "us",
                           "america" = "us",
                           "units states" = "us",
-                          "cascadia" = NA,
-                          "there isn't one for old men" = NA,
-                          "one of the best ones" = NA,
+                          "cascadia" = NA_character_,
+                          "there isn't one for old men" = NA_character_,
+                          "one of the best ones" = NA_character_,
                           "the yoo ess of aaayyyyyy" = "us",
                           "united kindom" = "uk",
-                          "somewhere" = NA,
-                          "god's country" = NA,
+                          "somewhere" = NA_character_,
+                          "god's country" = NA_character_,
                           "sub-canadian north america... 'merica" = "us",
                           "trumpistan" = "us",
                           "merica" = "us",
                           "see above" = "us",
-                          "the republic of cascadia" = NA,
+                          "the republic of cascadia" = NA_character_,
                           "united stetes" = "us",
-                          "denial" = NA,
+                          "denial" = NA_character_,
                           "united state" = "us",
                           "united staes" = "us",
                           "unhinged states" = "us",
@@ -193,125 +193,62 @@ candy_total %>%
                           "the united states" = "us",
                           "north carolina" = "us",
                           "unied states" = "us",
-                          "earth" = NA,
+                          "earth" = NA_character_,
                           "u s" = "us",
                           "u.k." = "uk",
                           "the united states of america" = "us",
                           "unite states" = "us",
-                          "insanity lately" = NA,
+                          "insanity lately" = NA_character_,
                           "'merica" = "us",
                           "pittsburgh" = "us",
-                          "a" = NA,
+                          "a" = NA_character_,
                           "can" = "canada",
                           "canae" = "canada",
                           "new york" = "us",
                           "california" = "us",
-                          "i pretend to be from canada, but i am really from the united states" = NA,
+                          "i pretend to be from canada, but i am really from the united states." = NA_character_,
                           "scotland" = "uk",
                           "united stated" = "us",
                           "ahem....amerca" = "us",
-                          "ud" = NA,
+                          "ud" = NA_character_,
                           "new jersey" = "us",
                           "united ststes" = "us",
                           "united statss" ="us",
                           "endland" = "uk",
-                          "atlantis" = NA,
+                          "atlantis" = NA_character_,
                           "murrika" = "us",
                           "alaska" = "us",
                           "soviet canuckistan" = "canada",
                           "n. america" = "us",
-                          "narnia" = NA,
+                          "narnia" = NA_character_,
                           "u s a" = "us",
                           "united statea" = "us",
-                          "subscribe to dm4uz3 on youtube" = NA,
-                          "i don't know anymore" = NA,
-                          "fear and loathing" = NA,
-                          .default = country)
+                          "subscribe to dm4uz3 on youtube" = NA_character_,
+                          "i don't know anymore" = NA_character_,
+                          "fear and loathing" = NA_character_,
+                          "united sates" = "us",
+                          "united  states of america" = "us",
+                          "unites states" = "us",
+                          "canada`" = "canada"
+                            )
          ) %>% 
-  mutate(country = if_else(str_detect(country, "^[0-9]+"), NA, country)) %>% 
-  distinct(country) %>% 
-  print(n=200)
-
-
+# AGE and YEAR
+  #year is a character, age is a character -> change into numerical (so below code will run)
   
-
-  filter(is.na(age) & str_detect(country, "^[0-9]+")) %>% 
-  head()
-  
-candy_total %>% 
-  mutate(country = if_else(str_to_lower(country)) %>%
-  filter(str_detect(country, "usa")) %>% 
-  distinct(country) %>% 
-  print(n=15)
-
-
-
-
-
-
-candy_total %>% 
-  mutate(country = str_to_lower(country)) %>% 
-  distinct(country) %>% 
-  print(n=200)
-
-
-
-
- candy_total %>% 
-   filter(is.na(age) & str_detect(country, "^[0-9]+")) %>% 
-   head()
-  
-  
- & country == str_detect(country, "[0-9]")
-  
-  
-candy_total %>% 
-  mutate(age = if_else(age == is.na(age) &
-                         str_detect(country, "^[0-9]+"),
-                       country, age)
-  )
-candy_total %>% 
-  filter(country == str_detect(country, "[0-9]+")) %>% 
-  nrow()
-
-
-#year is a character, age is a character -> change into numerical
-candy_total_num <- candy_total %>% 
   mutate(year = as.numeric(year)) %>% 
-  mutate(age = as.numeric(age))
+  mutate(age = as.numeric(age)) %>% 
 
 # AGE
 # let's check if there are any abnormal ages included. If so, round() or replace by NA
-  # Assumption: I assume that any person between 3-100 years can fill in the questionnaire 
-  # (potentially with help of supervisor), other ages are replaced by NA. 
-candy_total_age_ok <- candy_total_num %>% 
+# Assumption: I assume that any person between 3-100 years can fill in the questionnaire 
+# (potentially with help of supervisor), other ages are replaced by NA. 
+
   mutate(age = if_else(age >= 3 & age <=100, age, NA)) %>% 
-  mutate(age = round(age)) #%>% 
-  #distinct(age)  
-  #print(n=85)
-
-# Looking at distinct country values, it looks like age has been filled into country for several rows
-# lets change:
-candy_total %>% 
-  mutate(age = if_else(age == is.na(age) &
-                         country == str_detect(country, "^[0-9]+"),
-                       country, age)
-  )
+  mutate(age = round(age))
 
 
-candy_total_age_ok %>% 
-  select(country) %>% 
-  group_by(country) %>% 
-  summarise(count = n())
-
-# variable: participate, gender, rating are all ok!
-  #candy_total_age_ok %>% 
-  #  distinct(participate)
-    #candy_total_age_ok %>% 
-    #  distinct(gender)
-      #candy_total_age_ok %>% 
-      #  distinct(rating)
-
-## It looks like in candy_2016 age column is mixed up with country column (age = NA, while country has an age)
+  
+  
+  
   
 
