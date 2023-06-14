@@ -107,29 +107,32 @@ candy %>%
 The average age of people NOT participating is 39.26 years
 
 ## Question 4 - For each of joy, despair and meh, which candy bar received the most of these ratings
+-1. first important step is to indicate which candy types are actually bars,
+    we need to do some recoding 
 ```{r}
 #first important step is to indicate which candy types are actually bars,
-#we need to do some recoding:
-candy %>% 
-  mutate(is_bar = if_else(str_detect(candy_type, "bar"), TRUE, FALSE)) %>% 
-  mutate(is_bar = if_else(candy_type = ""))
-# use %in% any of the bar types, than add TRUE to is_bar
+#we need to do some recoding 
+#(add additional column indicating if we are dealing with a candy bar) :
 
-
-
-mutate(country = if_else(str_detect(country, "usa"), "us", country)) %>% 
-  
+candy_bars <- candy %>% 
+  mutate(is_bar = if_else(
+    str_detect(
+      candy_type, "bar") |
+      candy_type %in% 
+      c("hersheys_dark_chocolate", "coffee_crisp", "twix", "three_musketeers",
+        "milky_way", "nestle_crunch", "butterfinger", "caramellos", "snickers",    
+        "hershey_s_milk_chocolate", "kit_kat", "mars"), 
+    TRUE, FALSE)
+    ) %>% 
+  filter(is_bar == TRUE) 
 ```
-
-
+-2. now using the new object, we can check which bar received most ratings for
+    Joy, Despair, and Meh
 
 ```{r}
 # First check for Joy:
-candy %>% 
+candy_bars %>% 
   select(candy_type, rating) %>% 
-  # filter for 'bar' only, because we only want to analyse candy bars
-  # we create an extra column indicating 
-  filter(candy_type == "bar")
   filter(rating == "JOY") %>% 
   group_by(candy_type) %>% 
   summarise(total_joys_per_candy_type = n()) %>% 
@@ -138,7 +141,7 @@ candy %>%
 ```
 ```{r}
 # Secondly, check for despair:
-candy %>% 
+candy_bars %>% 
   select(candy_type, rating) %>% 
   filter(rating == "DESPAIR") %>% 
   group_by(candy_type) %>% 
@@ -149,7 +152,7 @@ candy %>%
 
 ```{r}
 # Thirdly, check for meh:
-candy %>% 
+candy_bars %>% 
   select(candy_type, rating) %>% 
   filter(rating == "MEH") %>% 
   group_by(candy_type) %>% 
@@ -159,32 +162,84 @@ candy %>%
 ```
 ### Answer:
 For each of joy, despair and meh, highest rating candy is:
-  Joy -> reese_s_peanut_butter_cups     - 7369 votes
-  Meh -> lollipops                      - 1570 votes
-  despair -> gum_from_baseball_cards    - 7341 votes
+  Joy     -> kit_kat               - 7252 votes
+  Meh     -> 100_grand_bar         - 1307 votes
+  despair -> reggie_jackson_bar    - 4506 votes
 
-
+## Question 5 - How many people rated Starburst as despair
 ```{r}
 candy %>% 
-  select(candy_type) %>% 
-  distinct(candy_type) %>% 
-  print(n=100)
+  filter(candy_type == "starburst") %>% 
+  filter(rating == "DESPAIR") %>% 
+  summarise(count_total_despair_for_starburst = n())
+```
+### Answer:
+In total 1990 people voted "despair" for starburst
+
+*For the next three questions: count despair as -1, joy as +1, and meh as 0*
+Lets create an additional column using the given coding system
+```{r}
+# All remaining questions relate to candy_bars only so do this for the dataset 
+# `candy_bars`
+
+candy_bars_vote_count <- candy_bars %>% 
+  mutate(vote = case_when(
+    rating == "JOY" ~ 1,
+    rating == "DESPAIR" ~ -1,
+    rating == "MEH" ~ 0
+  )) %>% 
+  drop_na(vote)
 ```
 
-hersheys_dark_chocolate
-coffee_crisp
-twix
-three_musketeers
-milky_way
-nestle_crunch
-butterfinger
-caramellos
-snickers
-dark_chocolate_hershey
-hershey_s_milk_chocolate
-kit_kat
-mars
+## Question 6 - What was the most popular candy bar by this rating system for each gender in the dataset ?
 
-Check what to do with:
-dark_chocolate_hershey
-hersheys_dark_chocolate
+```{r}
+candy_bars_vote_count %>% 
+  select(gender) %>% 
+  distinct(gender) %>% 
+  head() 
+# THere are 4 gender types: Male, Female, Other, I'd rather not say
+
+# Lets check Male
+candy_bars_vote_count %>% 
+  filter(gender == "Male") %>% 
+  group_by(candy_type) %>% 
+  summarise(total_vote_count = sum(vote)) %>% 
+  arrange(desc(total_vote_count)) %>% 
+  head(1)
+```
+```{r}
+# Lets check Female
+candy_bars_vote_count %>% 
+  filter(gender == "Female") %>% 
+  group_by(candy_type) %>% 
+  summarise(total_vote_count = sum(vote)) %>% 
+  arrange(desc(total_vote_count)) %>% 
+  head(1)
+```
+```{r}
+# Lets check Other
+candy_bars_vote_count %>% 
+  filter(gender == "Other") %>% 
+  group_by(candy_type) %>% 
+  summarise(total_vote_count = sum(vote)) %>% 
+  arrange(desc(total_vote_count)) %>% 
+  head(1)
+```
+```{r}
+# Lets check I'd rather not say
+candy_bars_vote_count %>% 
+  filter(gender == "I'd rather not say") %>% 
+  group_by(candy_type) %>% 
+  summarise(total_vote_count = sum(vote)) %>% 
+  arrange(desc(total_vote_count)) %>% 
+  head(1)
+```
+### Answer:
+The most popular candy bar by this rating system is for:
+- Male:                 kit_kat     - 1439 votes
+- Female:               kit_kat     - 766 votes
+- Other:                twix        - 32 votes
+- I'd rather not say:   kit_kat     - 62 votes
+
+## Question 7 - 
