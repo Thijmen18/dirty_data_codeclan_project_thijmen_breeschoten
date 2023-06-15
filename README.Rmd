@@ -25,6 +25,9 @@ documentation: **
   
 * Task 4:
   dirty_data_codeclan_project_thijmen_breeschoten/halloween_candy/documentation_and_analysis/`analysing_candy.Rmd`
+  
+* Task 5:
+  folder: `additional_tasks_extensions` is a yet unfinished project!
 
 
 ### Project tasks
