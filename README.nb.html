@@ -1764,44 +1764,46 @@ Professional Data Analyses Course - student cohort DE21</p>
 <h3>Dirty Data Project</h3>
 <p>Goal of the project task is to clean and analyse a raw “dirty”
 dataset in order to answer several questions regarding the data.</p>
-<p>For an overview of the individual tasks, cleaning and analyses please
-read the task-specific documentation: * Task 3:
-dirty_data_codeclan_project_thijmen_breeschoten/sea_bird_observation/<code>README_analyses_overview.Rmd</code></p>
+<p><strong>For an overview of the individual tasks, cleaning and
+analyses please read the task-specific documentation: </strong></p>
 <ul>
-<li>Task 4:
-dirty_data_codeclan_project_thijmen_breeschoten/halloween_candy/documentation_and_analysis/<code>analysing_candy.Rmd</code></li>
+<li><p>Task 3:
+dirty_data_codeclan_project_thijmen_breeschoten/sea_bird_observation/<code>README_analyses_overview.Rmd</code></p></li>
+<li><p>Task 4:
+dirty_data_codeclan_project_thijmen_breeschoten/halloween_candy/documentation_and_analysis/<code>analysing_candy.Rmd</code></p></li>
 </ul>
 </div>
 <div id="project-tasks" class="section level3">
 <h3>Project tasks</h3>
 <ul>
-<li><p>Task 3: Seabird observations Data contents:</p>
-<pre><code>    The raw data contains seabird observations/sightings as done from ships in seas 
-    around New Zealand. The raw data (.xls file) contains two worksheets with 1) ship data 
-    and 2) bird data (counts+names).</code></pre></li>
+<li><p>Task 3: Seabird observations Data contents: The raw data contains
+seabird observations/sightings as done from ships in seas around New
+Zealand. The raw data (.xls file) contains two worksheets with 1) ship
+data and 2) bird data (counts+names).</p></li>
 <li><p>Task 4: Halloween Candy Data contents: The raw data contains
 results from a questionnaire regarding halloween/trick or treat candy.
-The data is open-access and available here: <a href="https://www.scq.ubc.ca/so-much-candy-data-seriously/" class="uri">https://www.scq.ubc.ca/so-much-candy-data-seriously/</a></p>
-<pre><code>    The questionnaires are taken in three consecutive years (2015, 2016, 2017), and
-    the results can be found in three separate .xlsx files:
-    - `boing-boing-candy-2015.xlsx`
-    - `boing-boing-candy-2016.xlsx`
-    - `boing-boing-candy-2017.xlsx`</code></pre></li>
+The data is open-access and available here: <a href="https://www.scq.ubc.ca/so-much-candy-data-seriously/" class="uri">https://www.scq.ubc.ca/so-much-candy-data-seriously/</a>
+<br> The questionnaires are taken in three consecutive years (2015,
+2016, 2017), and the results can be found in three separate .xlsx files:
+<br> - <code>boing-boing-candy-2015.xlsx</code> <br> -
+<code>boing-boing-candy-2016.xlsx</code> <br> -
+<code>boing-boing-candy-2017.xlsx</code> <br></p></li>
 </ul>
 </div>
 </div>
 <div id="file-and-folder-overview" class="section level2">
 <h2>FILE AND FOLDER OVERVIEW</h2>
 <p>For an overview of the individual tasks, cleaning and analyses please
-read the task-specific documentation: * Task 3:
-dirty_data_codeclan_project_thijmen_breeschoten/sea_bird_observation/<code>README_analyses_overview.Rmd</code></p>
+read the task-specific documentation:</p>
 <ul>
-<li>Task 4:
-dirty_data_codeclan_project_thijmen_breeschoten/halloween_candy/documentation_and_analysis/<code>analysing_candy.Rmd</code></li>
+<li><p>Task 3:
+dirty_data_codeclan_project_thijmen_breeschoten/sea_bird_observation/<code>README_analyses_overview.Rmd</code></p></li>
+<li><p>Task 4:
+dirty_data_codeclan_project_thijmen_breeschoten/halloween_candy/documentation_and_analysis/<code>analysing_candy.Rmd</code></p></li>
 </ul>
 <div id="task-3---seabird-data" class="section level3">
 <h3>Task 3 - Seabird data</h3>
-<p>#### Language, software and packages used</p>
+<p><strong>Language, software and packages used</strong></p>
 <ul>
 <li><p>The code is written in R (version 4.3.0) R Core Team (2023).
 <em>R: A Language and Environment for Statistical Computing</em>. R
@@ -1814,21 +1816,36 @@ Foundation for Statistical Computing, Vienna, Austria. <a href="https://www.R-pr
 <li><code>tidyverse</code>(ver 2.0.0)</li>
 </ul></li>
 </ul>
-<p>#### File and folder overview</p>
+<p><strong>File and folder overview</strong></p>
 <p>The project folder <code>sea_bird_observation</code> contains the
-.Rproj file and this README file. The following files are included and
-distributed in each folder:</p>
-<p>clean_data - <code>seabirds_cleaned.csv</code> cleaned dataset using
-script ‘cleaning_seabirds.R’ data_cleaning_scripts -
-<code>cleaning_seabirds.R</code> Rscript to read and clean the raw data
-file. documentation_and_analysis - <code>analysing_seabirds.Rmd</code>
-(and knitted html file) Rnotebook script to analyse the cleaned dataset
-in order to answer the analyses questions. raw_data -
-<code>seabirds.xls</code> raw dataset in xls format</p>
+.Rproj file. The following files are included and distributed in each
+folder:</p>
+<ul>
+<li>clean_data <br>
+<ul>
+<li><code>seabirds_cleaned.csv</code> cleaned dataset using script
+‘cleaning_seabirds.R’ <br></li>
+</ul></li>
+<li>data_cleaning_scripts <br>
+<ul>
+<li><code>cleaning_seabirds.R</code> Rscript to read and clean the raw
+data file. <br></li>
+</ul></li>
+<li>documentation_and_analysis <br>
+<ul>
+<li><code>analysing_seabirds.Rmd</code> (and knitted html file)
+Rnotebook script to analyse the cleaned dataset in order to answer the
+analyses questions. <br></li>
+</ul></li>
+<li>raw_data <br>
+<ul>
+<li><code>seabirds.xls</code> raw dataset in xls format <br></li>
+</ul></li>
+</ul>
 </div>
 <div id="task-4---halloween-candy" class="section level3">
 <h3>Task 4 - Halloween Candy</h3>
-<p>#### 3. Language, software and packages used</p>
+<p><strong>Language, software and packages used</strong></p>
 <ul>
 <li><p>The code is written in R (version 4.3.0) R Core Team (2023).
 <em>R: A Language and Environment for Statistical Computing</em>. R
@@ -1842,28 +1859,39 @@ cleaning_candy.R</p>
 <li><code>tidyverse</code>(ver 2.0.0)</li>
 </ul></li>
 </ul>
-<p>#### 4. File and folder overview</p>
+<p><strong>File and folder overview</strong></p>
 <p>The Rproject folder <code>halloween_candy</code> contains the .Rproj
 file and the following folders. The following files are included and
 distributed in each folder:</p>
-<p>clean_data - <code>candy_cleaned.csv</code> cleaned dataset using
-script ‘cleaning_candy.R’ data_cleaning_scripts -
-<code>cleaning_candy.R</code> Rscript to read and clean the raw data
-file. documentation_and_analysis - <code>analysing_candy.Rmd</code> (and
-knitted html file) Rnotebook script presenting an overview and
-background information regarding the project and analyses. It further
-presents the script/code to analyse the cleaned dataset in order to
-answer the analyses questions. raw_data -
-`<code>boing-boing-candy-2015.xlsx</code>,
+<ul>
+<li>clean_data <br>
+<ul>
+<li><code>candy_cleaned.csv</code> cleaned dataset using script
+‘cleaning_candy.R’ <br></li>
+</ul></li>
+<li>data_cleaning_scripts <br>
+<ul>
+<li><code>cleaning_candy.R</code> Rscript to read and clean the raw data
+file. <br></li>
+</ul></li>
+<li>documentation_and_analysis <br>
+<ul>
+<li><code>analysing_candy.Rmd</code> (and knitted html file) Rnotebook
+script presenting an overview and background information regarding the
+project and analyses. It further presents the script/code to analyse the
+cleaned dataset in order to answer the analyses questions. <br></li>
+</ul></li>
+<li>raw_data <br> - `<code>boing-boing-candy-2015.xlsx</code>,
 <code>boing-boing-candy-2016.xlsx</code>,
-<code>boing-boing-candy-2017.xlsx</code> raw datasets in xlsx
-format.</p>
+<code>boing-boing-candy-2017.xlsx</code> raw datasets in xlsx format.
+<br></li>
+</ul>
 <!-- rnb-text-end -->
 </div>
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyBSRUFETUUgCgpSRUFETUUgZmlsZSBmb3IgdGhlIHJlcG8gYGRpcnR5X2RhdGFfY29kZWNsYW5fcHJvamVjdF90aGlqbWVuX2JyZWVzY2hvdGVuYAoKIyMgT1ZFUlZJRVcKClRoaXMgcmVwbyBjb250YWlucyB0aGUgYW5hbHlzZXMgcHJvamVjdHMgZm9yIHRoZSAKQ29kZUNsYW4gLSBQcm9mZXNzaW9uYWwgRGF0YSBBbmFseXNlcyBDb3Vyc2UgLSBzdHVkZW50IGNvaG9ydCBERTIxCgojIyMgRGlydHkgRGF0YSBQcm9qZWN0CgpHb2FsIG9mIHRoZSBwcm9qZWN0IHRhc2sgaXMgdG8gY2xlYW4gYW5kIGFuYWx5c2UgYSByYXcgImRpcnR5IiBkYXRhc2V0IGluIG9yZGVyIHRvIGFuc3dlciAKc2V2ZXJhbCBxdWVzdGlvbnMgcmVnYXJkaW5nIHRoZSBkYXRhLgoKRm9yIGFuIG92ZXJ2aWV3IG9mIHRoZSBpbmRpdmlkdWFsIHRhc2tzLCBjbGVhbmluZyBhbmQgYW5hbHlzZXMgcGxlYXNlIHJlYWQgdGhlIHRhc2stc3BlY2lmaWMKZG9jdW1lbnRhdGlvbjoKKiBUYXNrIDM6IAogIGRpcnR5X2RhdGFfY29kZWNsYW5fcHJvamVjdF90aGlqbWVuX2JyZWVzY2hvdGVuL3NlYV9iaXJkX29ic2VydmF0aW9uL2BSRUFETUVfYW5hbHlzZXNfb3ZlcnZpZXcuUm1kYAogIAoqIFRhc2sgNDoKICBkaXJ0eV9kYXRhX2NvZGVjbGFuX3Byb2plY3RfdGhpam1lbl9icmVlc2Nob3Rlbi9oYWxsb3dlZW5fY2FuZHkvZG9jdW1lbnRhdGlvbl9hbmRfYW5hbHlzaXMvYGFuYWx5c2luZ19jYW5keS5SbWRgCgoKIyMjIFByb2plY3QgdGFza3MKKiBUYXNrIDM6IFNlYWJpcmQgb2JzZXJ2YXRpb25zCiAgICAgICAgICBEYXRhIGNvbnRlbnRzOgogICAgICAgICAgCiAgICAgICAgICBUaGUgcmF3IGRhdGEgY29udGFpbnMgc2VhYmlyZCBvYnNlcnZhdGlvbnMvc2lnaHRpbmdzIGFzIGRvbmUgZnJvbSBzaGlwcyBpbiBzZWFzIAogICAgICAgICAgYXJvdW5kIE5ldyBaZWFsYW5kLiBUaGUgcmF3IGRhdGEgKC54bHMgZmlsZSkgY29udGFpbnMgdHdvIHdvcmtzaGVldHMgd2l0aCAxKSBzaGlwIGRhdGEgCiAgICAgICAgICBhbmQgMikgYmlyZCBkYXRhIChjb3VudHMrbmFtZXMpLgogICAgICAgICAgCiogVGFzayA0OiBIYWxsb3dlZW4gQ2FuZHkKICAgICAgICAgIERhdGEgY29udGVudHM6CiAgICAgICAgICBUaGUgcmF3IGRhdGEgY29udGFpbnMgcmVzdWx0cyBmcm9tIGEgcXVlc3Rpb25uYWlyZSByZWdhcmRpbmcgaGFsbG93ZWVuL3RyaWNrIG9yIHRyZWF0IGNhbmR5LgogICAgICAgICAgVGhlIGRhdGEgaXMgb3Blbi1hY2Nlc3MgYW5kIGF2YWlsYWJsZSBoZXJlOiAKICAgICAgICAgIGh0dHBzOi8vd3d3LnNjcS51YmMuY2Evc28tbXVjaC1jYW5keS1kYXRhLXNlcmlvdXNseS8KCiAgICAgICAgICBUaGUgcXVlc3Rpb25uYWlyZXMgYXJlIHRha2VuIGluIHRocmVlIGNvbnNlY3V0aXZlIHllYXJzICgyMDE1LCAyMDE2LCAyMDE3KSwgYW5kCiAgICAgICAgICB0aGUgcmVzdWx0cyBjYW4gYmUgZm91bmQgaW4gdGhyZWUgc2VwYXJhdGUgLnhsc3ggZmlsZXM6CiAgICAgICAgICAtIGBib2luZy1ib2luZy1jYW5keS0yMDE1Lnhsc3hgCiAgICAgICAgICAtIGBib2luZy1ib2luZy1jYW5keS0yMDE2Lnhsc3hgCiAgICAgICAgICAtIGBib2luZy1ib2luZy1jYW5keS0yMDE3Lnhsc3hgCgojIyBGSUxFIEFORCBGT0xERVIgT1ZFUlZJRVcKRm9yIGFuIG92ZXJ2aWV3IG9mIHRoZSBpbmRpdmlkdWFsIHRhc2tzLCBjbGVhbmluZyBhbmQgYW5hbHlzZXMgcGxlYXNlIHJlYWQgdGhlIHRhc2stc3BlY2lmaWMKZG9jdW1lbnRhdGlvbjoKKiBUYXNrIDM6IAogIGRpcnR5X2RhdGFfY29kZWNsYW5fcHJvamVjdF90aGlqbWVuX2JyZWVzY2hvdGVuL3NlYV9iaXJkX29ic2VydmF0aW9uL2BSRUFETUVfYW5hbHlzZXNfb3ZlcnZpZXcuUm1kYAogIAoqIFRhc2sgNDoKICBkaXJ0eV9kYXRhX2NvZGVjbGFuX3Byb2plY3RfdGhpam1lbl9icmVlc2Nob3Rlbi9oYWxsb3dlZW5fY2FuZHkvZG9jdW1lbnRhdGlvbl9hbmRfYW5hbHlzaXMvYGFuYWx5c2luZ19jYW5keS5SbWRgCiAgCiMjIyBUYXNrIDMgLSBTZWFiaXJkIGRhdGEKCiAgIyMjIyBMYW5ndWFnZSwgc29mdHdhcmUgYW5kIHBhY2thZ2VzIHVzZWQKCiAgKiBUaGUgY29kZSBpcyB3cml0dGVuIGluIFIgKHZlcnNpb24gNC4zLjApCiAgICBSIENvcmUgVGVhbSAoMjAyMykuIF9SOiBBIExhbmd1YWdlIGFuZCBFbnZpcm9ubWVudCBmb3IgU3RhdGlzdGljYWwgQ29tcHV0aW5nXy4gCiAgICBSIEZvdW5kYXRpb24gZm9yIFN0YXRpc3RpY2FsIENvbXB1dGluZywgVmllbm5hLCBBdXN0cmlhLgogICA8aHR0cHM6Ly93d3cuUi1wcm9qZWN0Lm9yZy8+CgogICogUiBpcyBydW4gaW4gUnN0dWRpbyAyMDIzLjAzLjArMzg2IAoKICAqIFRoZSBmb2xsb3dpbmcgbGlicmFyaWVzIGFyZSByZXF1aXJlZDoKICAgIGNsZWFuaW5nX3NlYWJpcmRzLlIKICAgICAgLSBgdGlkeXZlcnNlYCh2ZXIgMi4wLjApCiAgICAgIC0gYHJlYWR4bGAgKHZlciAxLjQuMikKICAgIGFuYWx5c2luZ19zZWFiaXJkcy5SbWQKICAgICAgLSBgdGlkeXZlcnNlYCh2ZXIgMi4wLjApCiAgCiAgIyMjIyBGaWxlIGFuZCBmb2xkZXIgb3ZlcnZpZXcKCiAgVGhlIHByb2plY3QgZm9sZGVyIGBzZWFfYmlyZF9vYnNlcnZhdGlvbmAgY29udGFpbnMgdGhlIC5ScHJvaiBmaWxlIGFuZCB0aGlzIFJFQURNRSBmaWxlLgogIFRoZSBmb2xsb3dpbmcgZmlsZXMgYXJlIGluY2x1ZGVkIGFuZCBkaXN0cmlidXRlZCBpbiBlYWNoIGZvbGRlcjoKCiAgY2xlYW5fZGF0YQogICAgLSBgc2VhYmlyZHNfY2xlYW5lZC5jc3ZgIGNsZWFuZWQgZGF0YXNldCB1c2luZyBzY3JpcHQgJ2NsZWFuaW5nX3NlYWJpcmRzLlInCiAgZGF0YV9jbGVhbmluZ19zY3JpcHRzCiAgICAtIGBjbGVhbmluZ19zZWFiaXJkcy5SYCBSc2NyaXB0IHRvIHJlYWQgYW5kIGNsZWFuIHRoZSByYXcgZGF0YSBmaWxlLgogIGRvY3VtZW50YXRpb25fYW5kX2FuYWx5c2lzCiAgICAtIGBhbmFseXNpbmdfc2VhYmlyZHMuUm1kYCAoYW5kIGtuaXR0ZWQgaHRtbCBmaWxlKSBSbm90ZWJvb2sgc2NyaXB0IHRvIGFuYWx5c2UgdGhlCiAgICAgIGNsZWFuZWQgZGF0YXNldCBpbiBvcmRlciB0byBhbnN3ZXIgdGhlIGFuYWx5c2VzIHF1ZXN0aW9ucy4KICByYXdfZGF0YQogICAgLSBgc2VhYmlyZHMueGxzYCByYXcgZGF0YXNldCBpbiB4bHMgZm9ybWF0CiAgICAKIyMjIFRhc2sgNCAtIEhhbGxvd2VlbiBDYW5keQoKICAjIyMjIDMuIExhbmd1YWdlLCBzb2Z0d2FyZSBhbmQgcGFja2FnZXMgdXNlZAoKICAqIFRoZSBjb2RlIGlzIHdyaXR0ZW4gaW4gUiAodmVyc2lvbiA0LjMuMCkKICAgIFIgQ29yZSBUZWFtICgyMDIzKS4gX1I6IEEgTGFuZ3VhZ2UgYW5kIEVudmlyb25tZW50IGZvciBTdGF0aXN0aWNhbCBDb21wdXRpbmdfLiAKICAgIFIgRm91bmRhdGlvbiBmb3IgU3RhdGlzdGljYWwgQ29tcHV0aW5nLCBWaWVubmEsIEF1c3RyaWEuCiAgICA8aHR0cHM6Ly93d3cuUi1wcm9qZWN0Lm9yZy8+CgogICogUiBpcyBydW4gaW4gUnN0dWRpbyAyMDIzLjAzLjArMzg2IAoKICAqIFRoZSBmb2xsb3dpbmcgbGlicmFyaWVzIGFyZSByZXF1aXJlZCAoc3BlY2lmaWVkIHBlciBzY3JpcHQpOgogICAgY2xlYW5pbmdfY2FuZHkuUgogICAgICAtIGB0aWR5dmVyc2VgKHZlciAyLjAuMCkKICAgICAgLSBgcmVhZHhsYCAodmVyIDEuNC4yKQogICAgYW5hbHlzaW5nX2NhbmR5LlJtZAogICAgICAtIGB0aWR5dmVyc2VgKHZlciAyLjAuMCkKICAKICAjIyMjIDQuIEZpbGUgYW5kIGZvbGRlciBvdmVydmlldwoKICBUaGUgUnByb2plY3QgZm9sZGVyIGBoYWxsb3dlZW5fY2FuZHlgIGNvbnRhaW5zIHRoZSAuUnByb2ogZmlsZSBhbmQgdGhlIGZvbGxvd2luZyAKICBmb2xkZXJzLgogIFRoZSBmb2xsb3dpbmcgZmlsZXMgYXJlIGluY2x1ZGVkIGFuZCBkaXN0cmlidXRlZCBpbiBlYWNoIGZvbGRlcjoKCiAgY2xlYW5fZGF0YQogICAgICAgLSBgY2FuZHlfY2xlYW5lZC5jc3ZgIGNsZWFuZWQgZGF0YXNldCB1c2luZyBzY3JpcHQgJ2NsZWFuaW5nX2NhbmR5LlInCiAgZGF0YV9jbGVhbmluZ19zY3JpcHRzCiAgICAgICAtIGBjbGVhbmluZ19jYW5keS5SYCBSc2NyaXB0IHRvIHJlYWQgYW5kIGNsZWFuIHRoZSByYXcgZGF0YSBmaWxlLgogIGRvY3VtZW50YXRpb25fYW5kX2FuYWx5c2lzCiAgICAgICAtIGBhbmFseXNpbmdfY2FuZHkuUm1kYCAoYW5kIGtuaXR0ZWQgaHRtbCBmaWxlKSBSbm90ZWJvb2sgc2NyaXB0IHByZXNlbnRpbmcgYW4gCiAgICAgICBvdmVydmlldyBhbmQgYmFja2dyb3VuZCBpbmZvcm1hdGlvbiByZWdhcmRpbmcgdGhlIHByb2plY3QgYW5kIGFuYWx5c2VzLiAKICAgICAgIEl0IGZ1cnRoZXIgcHJlc2VudHMgdGhlIHNjcmlwdC9jb2RlIHRvIGFuYWx5c2UgdGhlIGNsZWFuZWQgZGF0YXNldCBpbiBvcmRlciAKICAgICAgIHRvIGFuc3dlciB0aGUgYW5hbHlzZXMgcXVlc3Rpb25zLgogIHJhd19kYXRhCiAgICAgICAgLSBgYGJvaW5nLWJvaW5nLWNhbmR5LTIwMTUueGxzeGAsIGBib2luZy1ib2luZy1jYW5keS0yMDE2Lnhsc3hgLCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGBib2luZy1ib2luZy1jYW5keS0yMDE3Lnhsc3hgIHJhdyBkYXRhc2V0cyBpbiB4bHN4IGZvcm1hdC4=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyBSRUFETUUgCgpSRUFETUUgZmlsZSBmb3IgdGhlIHJlcG8gYGRpcnR5X2RhdGFfY29kZWNsYW5fcHJvamVjdF90aGlqbWVuX2JyZWVzY2hvdGVuYAoKIyMgT1ZFUlZJRVcKClRoaXMgcmVwbyBjb250YWlucyB0aGUgYW5hbHlzZXMgcHJvamVjdHMgZm9yIHRoZSAKQ29kZUNsYW4gLSBQcm9mZXNzaW9uYWwgRGF0YSBBbmFseXNlcyBDb3Vyc2UgLSBzdHVkZW50IGNvaG9ydCBERTIxCgojIyMgRGlydHkgRGF0YSBQcm9qZWN0CgpHb2FsIG9mIHRoZSBwcm9qZWN0IHRhc2sgaXMgdG8gY2xlYW4gYW5kIGFuYWx5c2UgYSByYXcgImRpcnR5IiBkYXRhc2V0IGluIG9yZGVyIHRvIGFuc3dlciAKc2V2ZXJhbCBxdWVzdGlvbnMgcmVnYXJkaW5nIHRoZSBkYXRhLgoKKipGb3IgYW4gb3ZlcnZpZXcgb2YgdGhlIGluZGl2aWR1YWwgdGFza3MsIGNsZWFuaW5nIGFuZCBhbmFseXNlcyBwbGVhc2UgcmVhZCB0aGUgdGFzay1zcGVjaWZpYwpkb2N1bWVudGF0aW9uOiAqKgoKKiBUYXNrIDM6IAogIGRpcnR5X2RhdGFfY29kZWNsYW5fcHJvamVjdF90aGlqbWVuX2JyZWVzY2hvdGVuL3NlYV9iaXJkX29ic2VydmF0aW9uL2BSRUFETUVfYW5hbHlzZXNfb3ZlcnZpZXcuUm1kYAogIAoqIFRhc2sgNDoKICBkaXJ0eV9kYXRhX2NvZGVjbGFuX3Byb2plY3RfdGhpam1lbl9icmVlc2Nob3Rlbi9oYWxsb3dlZW5fY2FuZHkvZG9jdW1lbnRhdGlvbl9hbmRfYW5hbHlzaXMvYGFuYWx5c2luZ19jYW5keS5SbWRgCgoKIyMjIFByb2plY3QgdGFza3MKCiogVGFzayAzOiBTZWFiaXJkIG9ic2VydmF0aW9ucwogICAgICAgICAgRGF0YSBjb250ZW50czoKICAgICAgICAgIFRoZSByYXcgZGF0YSBjb250YWlucyBzZWFiaXJkIG9ic2VydmF0aW9ucy9zaWdodGluZ3MgYXMgZG9uZSBmcm9tIHNoaXBzIGluIHNlYXMgCiAgICAgICAgICBhcm91bmQgTmV3IFplYWxhbmQuIFRoZSByYXcgZGF0YSAoLnhscyBmaWxlKSBjb250YWlucyB0d28gd29ya3NoZWV0cyB3aXRoIDEpICAgICAgICAgICAgICBzaGlwIGRhdGEgYW5kIDIpIGJpcmQgZGF0YSAoY291bnRzK25hbWVzKS4KICAgICAgICAgIAoqIFRhc2sgNDogSGFsbG93ZWVuIENhbmR5CiAgICAgICAgICBEYXRhIGNvbnRlbnRzOgogICAgICAgICAgVGhlIHJhdyBkYXRhIGNvbnRhaW5zIHJlc3VsdHMgZnJvbSBhIHF1ZXN0aW9ubmFpcmUgcmVnYXJkaW5nIGhhbGxvd2Vlbi90cmljayBvciAgICAgICAgICAgdHJlYXQgY2FuZHkuCiAgICAgICAgICBUaGUgZGF0YSBpcyBvcGVuLWFjY2VzcyBhbmQgYXZhaWxhYmxlIGhlcmU6IAogICAgICAgICAgaHR0cHM6Ly93d3cuc2NxLnViYy5jYS9zby1tdWNoLWNhbmR5LWRhdGEtc2VyaW91c2x5LyA8YnI+CiAgICAgICAgICBUaGUgcXVlc3Rpb25uYWlyZXMgYXJlIHRha2VuIGluIHRocmVlIGNvbnNlY3V0aXZlIHllYXJzICgyMDE1LCAyMDE2LCAyMDE3KSwgYW5kCiAgICAgICAgICB0aGUgcmVzdWx0cyBjYW4gYmUgZm91bmQgaW4gdGhyZWUgc2VwYXJhdGUgLnhsc3ggZmlsZXM6IDxicj4KICAgICAgICAgIC0gYGJvaW5nLWJvaW5nLWNhbmR5LTIwMTUueGxzeGAgICA8YnI+CiAgICAgICAgICAtIGBib2luZy1ib2luZy1jYW5keS0yMDE2Lnhsc3hgICAgPGJyPgogICAgICAgICAgLSBgYm9pbmctYm9pbmctY2FuZHktMjAxNy54bHN4YCAgIDxicj4KCiMjIEZJTEUgQU5EIEZPTERFUiBPVkVSVklFVwpGb3IgYW4gb3ZlcnZpZXcgb2YgdGhlIGluZGl2aWR1YWwgdGFza3MsIGNsZWFuaW5nIGFuZCBhbmFseXNlcyBwbGVhc2UgcmVhZCB0aGUgdGFzay1zcGVjaWZpYwpkb2N1bWVudGF0aW9uOgoKKiBUYXNrIDM6IAogIGRpcnR5X2RhdGFfY29kZWNsYW5fcHJvamVjdF90aGlqbWVuX2JyZWVzY2hvdGVuL3NlYV9iaXJkX29ic2VydmF0aW9uL2BSRUFETUVfYW5hbHlzZXNfb3ZlcnZpZXcuUm1kYAogIAoqIFRhc2sgNDoKICBkaXJ0eV9kYXRhX2NvZGVjbGFuX3Byb2plY3RfdGhpam1lbl9icmVlc2Nob3Rlbi9oYWxsb3dlZW5fY2FuZHkvZG9jdW1lbnRhdGlvbl9hbmRfYW5hbHlzaXMvYGFuYWx5c2luZ19jYW5keS5SbWRgCiAgCiMjIyBUYXNrIDMgLSBTZWFiaXJkIGRhdGEKCioqTGFuZ3VhZ2UsIHNvZnR3YXJlIGFuZCBwYWNrYWdlcyB1c2VkKioKCiAgKiBUaGUgY29kZSBpcyB3cml0dGVuIGluIFIgKHZlcnNpb24gNC4zLjApCiAgICBSIENvcmUgVGVhbSAoMjAyMykuIF9SOiBBIExhbmd1YWdlIGFuZCBFbnZpcm9ubWVudCBmb3IgU3RhdGlzdGljYWwgQ29tcHV0aW5nXy4gCiAgICBSIEZvdW5kYXRpb24gZm9yIFN0YXRpc3RpY2FsIENvbXB1dGluZywgVmllbm5hLCBBdXN0cmlhLgogICA8aHR0cHM6Ly93d3cuUi1wcm9qZWN0Lm9yZy8+CgogICogUiBpcyBydW4gaW4gUnN0dWRpbyAyMDIzLjAzLjArMzg2IAoKICAqIFRoZSBmb2xsb3dpbmcgbGlicmFyaWVzIGFyZSByZXF1aXJlZDoKICAgIGNsZWFuaW5nX3NlYWJpcmRzLlIKICAgICAgLSBgdGlkeXZlcnNlYCh2ZXIgMi4wLjApCiAgICAgIC0gYHJlYWR4bGAgKHZlciAxLjQuMikKICAgIGFuYWx5c2luZ19zZWFiaXJkcy5SbWQKICAgICAgLSBgdGlkeXZlcnNlYCh2ZXIgMi4wLjApCiAgCioqRmlsZSBhbmQgZm9sZGVyIG92ZXJ2aWV3KioKCiAgVGhlIHByb2plY3QgZm9sZGVyIGBzZWFfYmlyZF9vYnNlcnZhdGlvbmAgY29udGFpbnMgdGhlIC5ScHJvaiBmaWxlLgogIFRoZSBmb2xsb3dpbmcgZmlsZXMgYXJlIGluY2x1ZGVkIGFuZCBkaXN0cmlidXRlZCBpbiBlYWNoIGZvbGRlcjoKCiAgKiBjbGVhbl9kYXRhIDxicj4KICAgIC0gYHNlYWJpcmRzX2NsZWFuZWQuY3N2YCBjbGVhbmVkIGRhdGFzZXQgdXNpbmcgc2NyaXB0ICdjbGVhbmluZ19zZWFiaXJkcy5SJyA8YnI+CiAgKiBkYXRhX2NsZWFuaW5nX3NjcmlwdHMgPGJyPgogICAgLSBgY2xlYW5pbmdfc2VhYmlyZHMuUmAgUnNjcmlwdCB0byByZWFkIGFuZCBjbGVhbiB0aGUgcmF3IGRhdGEgZmlsZS4gPGJyPgogICogZG9jdW1lbnRhdGlvbl9hbmRfYW5hbHlzaXMgPGJyPgogICAgLSBgYW5hbHlzaW5nX3NlYWJpcmRzLlJtZGAgKGFuZCBrbml0dGVkIGh0bWwgZmlsZSkgUm5vdGVib29rIHNjcmlwdCB0byBhbmFseXNlIHRoZQogICAgICBjbGVhbmVkIGRhdGFzZXQgaW4gb3JkZXIgdG8gYW5zd2VyIHRoZSBhbmFseXNlcyBxdWVzdGlvbnMuIDxicj4KICAqIHJhd19kYXRhIDxicj4KICAgIC0gYHNlYWJpcmRzLnhsc2AgcmF3IGRhdGFzZXQgaW4geGxzIGZvcm1hdCA8YnI+CiAgICAKIyMjIFRhc2sgNCAtIEhhbGxvd2VlbiBDYW5keQoKKipMYW5ndWFnZSwgc29mdHdhcmUgYW5kIHBhY2thZ2VzIHVzZWQqKgoKICAqIFRoZSBjb2RlIGlzIHdyaXR0ZW4gaW4gUiAodmVyc2lvbiA0LjMuMCkKICAgIFIgQ29yZSBUZWFtICgyMDIzKS4gX1I6IEEgTGFuZ3VhZ2UgYW5kIEVudmlyb25tZW50IGZvciBTdGF0aXN0aWNhbCBDb21wdXRpbmdfLiAKICAgIFIgRm91bmRhdGlvbiBmb3IgU3RhdGlzdGljYWwgQ29tcHV0aW5nLCBWaWVubmEsIEF1c3RyaWEuCiAgICA8aHR0cHM6Ly93d3cuUi1wcm9qZWN0Lm9yZy8+CgogICogUiBpcyBydW4gaW4gUnN0dWRpbyAyMDIzLjAzLjArMzg2IAoKICAqIFRoZSBmb2xsb3dpbmcgbGlicmFyaWVzIGFyZSByZXF1aXJlZCAoc3BlY2lmaWVkIHBlciBzY3JpcHQpOgogICAgY2xlYW5pbmdfY2FuZHkuUgogICAgICAtIGB0aWR5dmVyc2VgKHZlciAyLjAuMCkKICAgICAgLSBgcmVhZHhsYCAodmVyIDEuNC4yKQogICAgYW5hbHlzaW5nX2NhbmR5LlJtZAogICAgICAtIGB0aWR5dmVyc2VgKHZlciAyLjAuMCkKICAKKipGaWxlIGFuZCBmb2xkZXIgb3ZlcnZpZXcqKgoKICBUaGUgUnByb2plY3QgZm9sZGVyIGBoYWxsb3dlZW5fY2FuZHlgIGNvbnRhaW5zIHRoZSAuUnByb2ogZmlsZSBhbmQgdGhlIGZvbGxvd2luZyAKICBmb2xkZXJzLgogIFRoZSBmb2xsb3dpbmcgZmlsZXMgYXJlIGluY2x1ZGVkIGFuZCBkaXN0cmlidXRlZCBpbiBlYWNoIGZvbGRlcjoKCiAgKiBjbGVhbl9kYXRhIDxicj4KICAgICAgIC0gYGNhbmR5X2NsZWFuZWQuY3N2YCBjbGVhbmVkIGRhdGFzZXQgdXNpbmcgc2NyaXB0ICdjbGVhbmluZ19jYW5keS5SJyA8YnI+CiAgKiBkYXRhX2NsZWFuaW5nX3NjcmlwdHMgPGJyPgogICAgICAgLSBgY2xlYW5pbmdfY2FuZHkuUmAgUnNjcmlwdCB0byByZWFkIGFuZCBjbGVhbiB0aGUgcmF3IGRhdGEgZmlsZS4gPGJyPgogICogZG9jdW1lbnRhdGlvbl9hbmRfYW5hbHlzaXMgPGJyPgogICAgICAgLSBgYW5hbHlzaW5nX2NhbmR5LlJtZGAgKGFuZCBrbml0dGVkIGh0bWwgZmlsZSkgUm5vdGVib29rIHNjcmlwdCBwcmVzZW50aW5nIGFuIAogICAgICAgb3ZlcnZpZXcgYW5kIGJhY2tncm91bmQgaW5mb3JtYXRpb24gcmVnYXJkaW5nIHRoZSBwcm9qZWN0IGFuZCBhbmFseXNlcy4gCiAgICAgICBJdCBmdXJ0aGVyIHByZXNlbnRzIHRoZSBzY3JpcHQvY29kZSB0byBhbmFseXNlIHRoZSBjbGVhbmVkIGRhdGFzZXQgaW4gb3JkZXIgCiAgICAgICB0byBhbnN3ZXIgdGhlIGFuYWx5c2VzIHF1ZXN0aW9ucy4gPGJyPgogICogcmF3X2RhdGEgPGJyPgogICAgICAgIC0gYGBib2luZy1ib2luZy1jYW5keS0yMDE1Lnhsc3hgLCBgYm9pbmctYm9pbmctY2FuZHktMjAxNi54bHN4YCwgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBgYm9pbmctYm9pbmctY2FuZHktMjAxNy54bHN4YCByYXcgZGF0YXNldHMgaW4geGxzeCBmb3JtYXQuIDxicj4=</div>
 
 
 
