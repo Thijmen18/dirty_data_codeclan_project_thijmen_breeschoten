@@ -51,21 +51,25 @@ Contents of this file:
   - `tidyverse`(ver 2.0.0)
   
 # 4. File and folder overview
+
 The Rproject folder `halloween_candy` contains the .Rproj file and the following 
 folders.
 The following files are included and distributed in each folder:
 
-clean_data
-  - `candy_cleaned.csv` cleaned dataset using script 'cleaning_candy.R'
-data_cleaning_scripts
-  - `cleaning_candy.R` Rscript to read and clean the raw data file.
-documentation_and_analysis
-  - `analysing_candy.Rmd` (and knitted html file) Rnotebook script presenting an 
-  overview and background information regarding the project and analyses. It further   presents the script/code to analyse the cleaned dataset in order to answer the       analyses questions.
-raw_data
-  - ``boing-boing-candy-2015.xlsx`, `boing-boing-candy-2016.xlsx`,                       `boing-boing-candy-2017.xlsx` raw datasets in xlsx format.
+  * clean_data
+      - `candy_cleaned.csv` cleaned dataset using script 'cleaning_candy.R'
+  * data_cleaning_scripts
+      - `cleaning_candy.R` Rscript to read and clean the raw data file.
+  * documentation_and_analysis
+      - `analysing_candy.Rmd` (and knitted html file) Rnotebook script presenting an 
+      overview and background information regarding the project and analyses. 
+      It further presents the script/code to analyse the cleaned dataset in order 
+      to answer the analyses questions.
+  * raw_data
+      - ``boing-boing-candy-2015.xlsx`, `boing-boing-candy-2016.xlsx`,                                       `boing-boing-candy-2017.xlsx` raw datasets in xlsx format.
   
 # 5. Cleaning overview
+
 The following steps were followed to clean the raw data files (see file cleaning_candy.R):
 
   * Step 1: open essential packages and open+explore raw data files 
@@ -78,6 +82,7 @@ The following steps were followed to clean the raw data files (see file cleaning
   * Step 8: write cleaned file to new .csv file
 
 # 6. Important assumptions/decisions
+
 The following cleaning/analyses decisions/assumptions are made:
 
   * Non-candy items AND non-descriptive candy items are removed from the dataset.
@@ -92,6 +97,9 @@ The following cleaning/analyses decisions/assumptions are made:
     the questionnaire (potentially with help of supervisor), other ages are replaced by NA. 
 
 # 7. Analyses
+
+The below analyses are done in other to answer questions 1-8:
+
 ```{r}
 # open libraries and cleaned file
 library(tidyverse)
@@ -100,8 +108,10 @@ candy <- read_csv("../clean_data/candy_cleaned.csv")
 head(candy)
 #glimpse(candy)
 ```
+
 ## Question 1 - What is the total number of candy ratings given across the three years. 
-(Number of  candy ratings, not the number of raters. Don’t count missing values)
+
+(Number of candy ratings, not the number of raters. Don’t count missing values)
 
 ```{r}
 candy %>% 
@@ -109,6 +119,7 @@ candy %>%
   nrow()
 ```
 ### Answer:
+
 The total number of ratings (either meh, depspair or joy) for candy products is 524165
 
 ## Question 2 - What was the average age of people who are going out trick or treating?
@@ -119,6 +130,7 @@ candy %>%
   summarise(average_age_participating = mean(age, na.rm = TRUE))
 ```
 ### Answer:
+
 The average age of people participating is 35.22 years
 
 ## Question 3 - What was the average age of people who are not going trick or treating
@@ -129,15 +141,15 @@ candy %>%
   summarise(average_age_NOT_participating = mean(age, na.rm = TRUE))
 ```
 ### Answer:
+
 The average age of people NOT participating is 39.26 years
 
 ## Question 4 - For each of joy, despair and meh, which candy bar received the most of these ratings
--1. first important step is to indicate which candy types are actually bars,
-    we need to do some recoding 
+
+  -Step 1. first important step is to indicate which candy types are actually bars,
+            we need to do some recoding 
 ```{r}
-#first important step is to indicate which candy types are actually bars,
-#we need to do some recoding 
-#(add additional column indicating if we are dealing with a candy bar) :
+#add additional column indicating if we are dealing with a candy bar:
 
 candy_bars <- candy %>% 
   mutate(is_bar = if_else(
@@ -151,8 +163,8 @@ candy_bars <- candy %>%
     ) %>% 
   filter(is_bar == TRUE) 
 ```
--2. now using the new object, we can check which bar received most ratings for
-    Joy, Despair, and Meh
+  -Step 2. now using the new object, we can check which bar received most ratings for
+          Joy, Despair, and Meh.
 
 ```{r}
 # First check for Joy:
@@ -186,12 +198,14 @@ candy_bars %>%
   head(1)
 ```
 ### Answer:
+
 For each of joy, despair and meh, highest rating candy is:
   Joy     -> reese_s_peanut_butter_cups     - 7369 votes
   Meh     -> 100_grand_bar                  - 1307 votes
-  despair -> reggie_jackson_bar             - 4506 votes
+  Despair -> reggie_jackson_bar             - 4506 votes
 
 ## Question 5 - How many people rated Starburst as despair
+
 ```{r}
 candy %>% 
   filter(candy_type == "starburst") %>% 
@@ -199,9 +213,11 @@ candy %>%
   summarise(count_total_despair_for_starburst = n())
 ```
 ### Answer:
+
 In total 1990 people voted "despair" for starburst
 
 *For the next three questions: count despair as -1, joy as +1, and meh as 0*
+
 Lets create an additional column using the given coding system
 ```{r}
 # All remaining questions relate to candy_bars only so do this for the dataset 
@@ -219,11 +235,12 @@ candy_bars_vote_count <- candy_bars %>%
 ## Question 6 - What was the most popular candy bar by this rating system for each gender in the dataset ?
 
 ```{r}
+# Lets check how many distinct gender types exist:
 candy_bars_vote_count %>% 
   select(gender) %>% 
   distinct(gender) %>% 
   head() 
-# THere are 4 gender types: Male, Female, Other, I'd rather not say
+# There are 4 gender types: Male, Female, Other, I'd rather not say
 
 # Lets check Male
 candy_bars_vote_count %>% 
@@ -261,7 +278,8 @@ candy_bars_vote_count %>%
   head(1)
 ```
 ### Answer:
-The most popular candy bar by this rating system per gender is:
+
+The most popular candy bar by this rating system per gender type is:
 - Male:                 reese_s_peanut_butter_cups	- 1443
 - Female:               reese_s_peanut_butter_cups  - 768 votes
 - Other:                twix        - 32 votes
@@ -279,6 +297,7 @@ candy_bars_vote_count %>%
   head(1)
 ```
 ```{r}
+# 2016
 candy_bars_vote_count %>% 
   filter(year == 2016) %>% 
   group_by(candy_type) %>% 
@@ -287,6 +306,7 @@ candy_bars_vote_count %>%
   head(1)
 ```
 ```{r}
+# 2017
 candy_bars_vote_count %>% 
   filter(year == 2017) %>% 
   group_by(candy_type) %>% 
@@ -295,14 +315,17 @@ candy_bars_vote_count %>%
   head(1)
 ```
 ### Answer:
+
 The most popular candy bar by this rating system per year is:
 - 2015: reese_s_peanut_butter_cups    - 4375
 - 2016: kit_kat                       - 920
 - 2017: reese_s_peanut_butter_cups    - 1403
 
 ## Question 8 - What was the most popular candy bar by this rating for people in US, Canada, UK, and all other countries?
+
 ```{r}
 # lets check for US:
+
 candy_bars_vote_count %>% 
   filter(country == "us") %>% 
   group_by(candy_type) %>% 
@@ -312,6 +335,7 @@ candy_bars_vote_count %>%
 ```
 ```{r}
 # lets check for Canada:
+
 candy_bars_vote_count %>% 
   filter(country == "canada") %>% 
   group_by(candy_type) %>% 
@@ -321,6 +345,7 @@ candy_bars_vote_count %>%
 ```
 ```{r}
 # lets check for UK:
+
 candy_bars_vote_count %>% 
   filter(country == "uk") %>% 
   group_by(candy_type) %>% 
@@ -330,6 +355,7 @@ candy_bars_vote_count %>%
 ```
 ```{r}
 # lets check for all other countries:
+
 candy_bars_vote_count %>% 
   filter(country != "uk" & country != "us" & country != "canada") %>% 
   group_by(candy_type) %>% 
@@ -338,6 +364,7 @@ candy_bars_vote_count %>%
   head(1)
 ```
 ### Answer:
+
 The most popular candy bar by this rating system per country is:
 - US:                 reese_s_peanut_butter_cups    -	1982
 - UK:                 milky_way	                    - 31

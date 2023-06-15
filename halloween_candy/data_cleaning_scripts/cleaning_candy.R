@@ -2,7 +2,8 @@
 # this script contains code to clean the raw data from files:
 # 'boing-boing-candy-2015' & 'boing-boing-candy-2016' & 'boing-boing-candy-2017'
 
-#######STEP 0: open & exploring data --------------------------------------
+#######STEP 1: open & exploring data --------------------------------------
+
 library(tidyverse)
 library(readxl)
 
@@ -18,12 +19,11 @@ view(candy_2015)
 view(candy_2016)
 view(candy_2017)
 
-# Based on data exploration: 
+# Background info: 
 # this is a questionaire during Halloween, over 3 consecutive years.
 # generally most columns are existing in 3 files
 
-
-#########STEP 1: column header uniform --------------------------------------
+#########STEP 2: column header uniform --------------------------------------
 # lets get the column headers uniform!
 # and add a column at the start with the year (to keep years separate after combining)
 
@@ -63,7 +63,8 @@ candy_new_2017 <- candy_2017 %>%
   rename_with(.cols = starts_with("q6"), .fn = ~ str_remove(., "q6_"))
 
 
-#######STEP 2: drop and rename columns --------------------------------------
+#######STEP 3: drop and rename columns --------------------------------------
+
 # lets drop columns in each dataset we do not need and rename columns that 
 # are clearly spelled differently in another year.
 
@@ -99,6 +100,7 @@ candy_2017_reduced <- candy_new_2017 %>%
   rename("mary_janes" = "anonymous_brown_globs_that_come_in_black_and_orange_wrappers_a_k_a_mary_janes")
 
 ####### STEP 4: transform datasets into long format --------------------------------------
+
 # lets transform each dataset into a long format (better to have all candy varieties into one variable)
 
 candy_2015_longer <- candy_2015_reduced %>% 
@@ -117,31 +119,33 @@ candy_2017_longer <- candy_2017_reduced %>%
                values_to = "rating")
 
 ####### STEP 5: adding important columns to 2015 dataset --------------------------------------
-#  lets add a few impoprtant columns to the 2015 dataset that are missing: 
+
+#  lets add a few important columns to the 2015 dataset that are missing: 
+
 candy_2015_add <- candy_2015_longer %>% 
   mutate(country = NA, 
          gender = NA,
          .before = candy_type)
 
-
-
 ####### STEP 6: combining three datasets --------------------------------------
+
 # lets combine all three datasets into a single file!
 
 candy_total <- bind_rows(candy_2015_add, candy_2016_longer, candy_2017_longer)
 
-             
-
 ######## STEP 7: check variable contents and clean --------------------------------------
+
 # lets check if contents of each variable makes sense (or if cleaning is needed!)
 # by checking with distinct(), I conclude that participate, gender, rating are all ok!
 
+##
 #COUNTRY
 # Looking at distinct country values, it looks like age has been filled into 
 # country for several rows
 # lets change:
 
 candy_total_clean_variables <- 
+  
   candy_total %>% 
   mutate(age = if_else(is.na(age) & 
                          str_detect(country, "^[0-9]+"),
@@ -232,12 +236,15 @@ candy_total_clean_variables <-
                           "canada`" = "canada"
                             )
          ) %>% 
+
+##
 # AGE and YEAR
   #year is a character, age is a character -> change into numerical (so below code will run)
   
   mutate(year = as.numeric(year)) %>% 
   mutate(age = as.numeric(age)) %>% 
 
+##
 # AGE
 # let's check if there are any abnormal ages included. If so, round() or replace by NA
 # Assumption: I assume that any person between 3-100 years can fill in the questionnaire 
