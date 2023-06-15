@@ -1,0 +1,125 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+# README 
+
+README file for the repo `dirty_data_codeclan_project_thijmen_breeschoten`
+
+## OVERVIEW
+
+This repo contains the analyses projects for the 
+CodeClan - Professional Data Analyses Course - student cohort DE21
+
+### Dirty Data Project
+
+Goal of the project task is to clean and analyse a raw "dirty" dataset in order to answer 
+several questions regarding the data.
+
+For an overview of the individual tasks, cleaning and analyses please read the task-specific
+documentation:
+* Task 3: 
+  dirty_data_codeclan_project_thijmen_breeschoten/sea_bird_observation/`README_analyses_overview.Rmd`
+  
+* Task 4:
+  dirty_data_codeclan_project_thijmen_breeschoten/halloween_candy/documentation_and_analysis/`analysing_candy.Rmd`
+
+
+### Project tasks
+* Task 3: Seabird observations
+          Data contents:
+          
+          The raw data contains seabird observations/sightings as done from ships in seas 
+          around New Zealand. The raw data (.xls file) contains two worksheets with 1) ship data 
+          and 2) bird data (counts+names).
+          
+* Task 4: Halloween Candy
+          Data contents:
+          The raw data contains results from a questionnaire regarding halloween/trick or treat candy.
+          The data is open-access and available here: 
+          https://www.scq.ubc.ca/so-much-candy-data-seriously/
+
+          The questionnaires are taken in three consecutive years (2015, 2016, 2017), and
+          the results can be found in three separate .xlsx files:
+          - `boing-boing-candy-2015.xlsx`
+          - `boing-boing-candy-2016.xlsx`
+          - `boing-boing-candy-2017.xlsx`
+
+## FILE AND FOLDER OVERVIEW
+For an overview of the individual tasks, cleaning and analyses please read the task-specific
+documentation:
+* Task 3: 
+  dirty_data_codeclan_project_thijmen_breeschoten/sea_bird_observation/`README_analyses_overview.Rmd`
+  
+* Task 4:
+  dirty_data_codeclan_project_thijmen_breeschoten/halloween_candy/documentation_and_analysis/`analysing_candy.Rmd`
+  
+### Task 3 - Seabird data
+
+  #### Language, software and packages used
+
+  * The code is written in R (version 4.3.0)
+    R Core Team (2023). _R: A Language and Environment for Statistical Computing_. 
+    R Foundation for Statistical Computing, Vienna, Austria.
+   <https://www.R-project.org/>
+
+  * R is run in Rstudio 2023.03.0+386 
+
+  * The following libraries are required:
+    cleaning_seabirds.R
+      - `tidyverse`(ver 2.0.0)
+      - `readxl` (ver 1.4.2)
+    analysing_seabirds.Rmd
+      - `tidyverse`(ver 2.0.0)
+  
+  #### File and folder overview
+
+  The project folder `sea_bird_observation` contains the .Rproj file and this README file.
+  The following files are included and distributed in each folder:
+
+  clean_data
+    - `seabirds_cleaned.csv` cleaned dataset using script 'cleaning_seabirds.R'
+  data_cleaning_scripts
+    - `cleaning_seabirds.R` Rscript to read and clean the raw data file.
+  documentation_and_analysis
+    - `analysing_seabirds.Rmd` (and knitted html file) Rnotebook script to analyse the
+      cleaned dataset in order to answer the analyses questions.
+  raw_data
+    - `seabirds.xls` raw dataset in xls format
+    
+### Task 4 - Halloween Candy
+
+  #### 3. Language, software and packages used
+
+  * The code is written in R (version 4.3.0)
+    R Core Team (2023). _R: A Language and Environment for Statistical Computing_. 
+    R Foundation for Statistical Computing, Vienna, Austria.
+    <https://www.R-project.org/>
+
+  * R is run in Rstudio 2023.03.0+386 
+
+  * The following libraries are required (specified per script):
+    cleaning_candy.R
+      - `tidyverse`(ver 2.0.0)
+      - `readxl` (ver 1.4.2)
+    analysing_candy.Rmd
+      - `tidyverse`(ver 2.0.0)
+  
+  #### 4. File and folder overview
+
+  The Rproject folder `halloween_candy` contains the .Rproj file and the following 
+  folders.
+  The following files are included and distributed in each folder:
+
+  clean_data
+       - `candy_cleaned.csv` cleaned dataset using script 'cleaning_candy.R'
+  data_cleaning_scripts
+       - `cleaning_candy.R` Rscript to read and clean the raw data file.
+  documentation_and_analysis
+       - `analysing_candy.Rmd` (and knitted html file) Rnotebook script presenting an 
+       overview and background information regarding the project and analyses. 
+       It further presents the script/code to analyse the cleaned dataset in order 
+       to answer the analyses questions.
+  raw_data
+        - ``boing-boing-candy-2015.xlsx`, `boing-boing-candy-2016.xlsx`,                                       `boing-boing-candy-2017.xlsx` raw datasets in xlsx format.

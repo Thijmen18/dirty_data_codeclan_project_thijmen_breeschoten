@@ -14,6 +14,7 @@ This file does provide information as normally presented in a README file, but
 further sums up information regarding the cleaning/analyses steps taken for review.
 
 ### Overview
+
 Goal of the project task is to clean and analyse a raw dataset in order to answer 
 several questions regarding the data.
 The raw data contains seabird observations/sightings as done from ships in seas 
@@ -43,6 +44,7 @@ The underlying code provides:
   - `tidyverse`(ver 2.0.0)
   
 ### File and folder overview
+
 The project folder `sea_bird_observation` contains the .Rproj file and this README file.
 The following files are included and distributed in each folder:
 
@@ -63,11 +65,14 @@ raw_data
   - Step 2, non-informative columns are dropped
   - Step 3, datasets from both worksheet are joined using a left_join 
     (since you want to keep all bird sightings info rows)
+    
 ```{r}
 # joining data
 seabirds_observed <- left_join(seabirds_renamed, ships_renamed, "record_id")
 ```
+  
   - Step 4, dropping all additional information about the age in the species name columns
+  
 ```{r}
 seabirds_correct_name <- seabirds_observed %>% 
   mutate(species_common = 
@@ -77,10 +82,12 @@ seabirds_correct_name <- seabirds_observed %>%
   mutate(species_scientific = 
            str_remove(species_scientific, " (AD|JUV|IMM|SUBAD|PL[0-9])$"))
 ```
+  
   - Step 5, check missing data and drop NAs for all rows where no scientific name is given
             and where count is NA..
   We drop these two NAs because a count is essential and we at least need a 
   scientific name to know which bird is seen!
+  
 ```{r}
 #check NAs for important columns
 seabirds_correct_name %>% 
@@ -96,6 +103,7 @@ seabirds_correct_name %>%
 seabirds_names_complete <- seabirds_correct_name %>% 
   drop_na(species_scientific)
 ```
+ 
   -> Important assumption/ decision:
   I have not removed double names/ and or Sensu Lato descriptions from the
   observations list. In biology it is common not to be able to identify down to species
@@ -107,6 +115,7 @@ seabirds_names_complete <- seabirds_correct_name %>%
   that the observer could only identify to genus level, not the species.
   
   - Step 6, write cleaned dataset to new csv file
+  
 ```{r}
 # Write the cleaned dataset to new csv file:
   write.csv(seabirds_names_complete, file = "clean_data/seabirds_cleaned.csv")
@@ -114,6 +123,7 @@ seabirds_names_complete <- seabirds_correct_name %>%
   
 
 ### Assumptions / decisions
+
 1. Important assumption/ decision:
 - I have not removed double names/ and or Sensu Lato descriptions from the
   observations list. In biology it is common not to be able to identify down to species
@@ -130,7 +140,7 @@ seabirds_names_complete <- seabirds_correct_name %>%
 -> I will explain the answer of each analyses question based on the assumption above.
 -> if needed I will filter out all "true" species identifications during the analyses
 
-### analyses overview & answers
+### Analyses overview & answers
 **Question 1 - Which bird had the most individual sightings?**
   
 ```{r}
