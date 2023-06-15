@@ -1,0 +1,14 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+# 1. Introduction
+
+Analyses file for the `CodeClan - dirty data project - task 5: Right Wing Authoritarianism
+Thijmen Breeschoten 
+CodeClan Professional Data Analysis student cohort DE21
+
+# Analysis
+
+
