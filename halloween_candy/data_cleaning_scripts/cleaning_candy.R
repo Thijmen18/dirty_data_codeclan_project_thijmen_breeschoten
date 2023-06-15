@@ -15,9 +15,9 @@ names(candy_2015)
 names(candy_2016)
 names(candy_2017)
 head(candy_2016)
-view(candy_2015)
-view(candy_2016)
-view(candy_2017)
+#view(candy_2015)
+#view(candy_2016)
+#view(candy_2017)
 
 # Background info: 
 # this is a questionaire during Halloween, over 3 consecutive years.
