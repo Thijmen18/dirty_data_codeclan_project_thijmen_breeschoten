@@ -1761,9 +1761,84 @@ Analysis student cohort DE21</p>
 <div id="analysis" class="section level1">
 <h1>Analysis</h1>
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmlnaHR3aW5nIDwtIHJlYWRfY3N2KFwiLi4vY2xlYW5fZGF0YS9yaWdodHdpbmdfY2xlYW5lZC5jc3ZcIikgXG5cbmBgYCJ9 -->
+<pre class="r"><code>rightwing &lt;- read_csv(&quot;../clean_data/rightwing_cleaned.csv&quot;) 
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTmV3IG5hbWVzOlJvd3M6IDk4ODEgQ29sdW1uczogMTDilIDilIAgQ29sdW1uIHNwZWNpZmljYXRpb24g4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSAXG5EZWxpbWl0ZXI6IFwiLFwiXG5jaHIgKDQpOiBlZHVjYXRpb24sIGdlbmRlciwgaGFuZCwgYWdlX2dyb3Vwc1xuZGJsICg2KTogLi4uMSwgdXNlcklELCBhdmVyYWdlX1JXUywgdGVzdGVsYXBzZSwgZmFtaWx5c2l6ZSwgYWdlXG7ihLkgVXNlIGBzcGVjKClgIHRvIHJldHJpZXZlIHRoZSBmdWxsIGNvbHVtbiBzcGVjaWZpY2F0aW9uIGZvciB0aGlzIGRhdGEuXG7ihLkgU3BlY2lmeSB0aGUgY29sdW1uIHR5cGVzIG9yIHNldCBgc2hvd19jb2xfdHlwZXMgPSBGQUxTRWAgdG8gcXVpZXQgdGhpcyBtZXNzYWdlLlxuIn0= -->
+<pre><code>New names:Rows: 9881 Columns: 10── Column specification ────────────────────────────────────────────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr (4): education, gender, hand, age_groups
+dbl (6): ...1, userID, average_RWS, testelapse, familysize, age
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<div id="question-1---whats-the-average-rwa-score-for-each-gender" class="section level2">
+<h2>Question 1 - What’s the average RWA score for each gender?</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6NCwibmNvbCI6Miwic3VtbWFyeSI6eyJBIHRpYmJsZSI6WyI0IMOXIDIiXX19LCJyZGYiOiJINHNJQUFBQUFBQUFBd3R5aVREbWl1QmlZR0JnWm1CaEJwS3NRQ1lEYTJpSW02NEZBd01MRTVERHlNREN3QW1pSzREU3drQUdTRkFBaUZtZ0VteHVxYm1KT2FsUUhvc3ZnczNxWDVLUldnUmtjUDRIQWlETkIxTGd3SHpJUW5FNzB3a0hqczlXYk4wZnp0bi9zMGsrQmtRT2JOT2U3dy91ekVPemx6VXZNVGUxR0dvbkU4ek85TlM4RktEUkVKNVlZbGxxVVdKNmFueFF1R044UVdwUlBGUVcxU0RPb3Z4eVBaaGh2Q0RER29BRTBHRi8wRzFNemtrc2h0a0lFK1JLU1N4SjFFc3JBdW9IOHY2aGFXSFBMeWpKek04RGFtSUNCUkVybW1iR0lqUUIvdEk4a0V0U2RKTXpTdk95ZFkxQkZvQ2xJWUFYeW1aQllqTkJyR1Q2RHpXS0ZSWVVxWG5wbVhud0lNOUpURXJOZ1hMNGdENEdlMWl2b0NnenJ3VG1FNkJvc1Y1SmZra2lUQjFYY240T1RBVHNONFovQUp2U3VQUVpBZ0FBIn0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["gender"],"name":[1],"type":["chr"],"align":["left"]},{"label":["average_RWA_per_gender"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"Female","2":"2.469834"},{"1":"Male","2":"3.118763"},{"1":"Other","2":"1.889744"},{"1":"NA","2":"2.823684"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[4]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="question-2---whats-the-average-rwa-score-for-left-handed-people-vs.-right-handed-people" class="section level2">
+<h2>Question 2 - What’s the average RWA score for left handed people
+vs. right handed people</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6MiwibmNvbCI6Miwic3VtbWFyeSI6eyJBIHRpYmJsZSI6WyIyIMOXIDIiXX19LCJyZGYiOiJINHNJQUFBQUFBQUFBMTFRc1U3RE1CQjEwemlva1ZxUTJKaVFtSk1GQ1RFV0NURXhSYUIyaTl6a21rUU5kbVM3d0lpRXhKZndEM3dBUDRIRWg3QTFuRk43cUQzY3ZYdDM5KzdPMmUzeU1sN0doSkF4Q2Nkb0tVSkNIeC91a210Q3dnQ0RFUW5KeFBoWFRKOGlNT1RKNFBlSjhCN1cybUthTlZXdEVjeE13VHo2Mlh5S2kvTjU5UHYzOWYzeDdpbFN6cDVBK1dvMTQ2WEZaK3daSktzZ3p4WTNlUWN5Tnprb09TamxTVTJrZUVtZDNOVEl2YUhwKzM3bnp5eGFwdHhNUjhZbDB5eGRTK3pIeUc4NUVwMXVCTWVtd0p4UHZlYVI5SWpqTFRlYmxFbFJiL2ttdVRJRGh2VCtUUzBPRHJFWkdmUldpbHFwQ0hqVmNIQzd0MndGclExbWVQRndjTnJKaHJ2L2o1RlZxUmFhdWJxNEVLMWpodHZJN2gvNkFrR0w5UUVBQUE9PSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["hand"],"name":[1],"type":["chr"],"align":["left"]},{"label":["average_RWA_per_handedness"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"Left","2":"2.855674"},{"1":"Right","2":"2.857406"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[2]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="question-4---whats-the-average-time-to-take-the-test-for-each-education-level" class="section level2">
+<h2>Question 4 - What’s the average time to take the test for each
+education level?</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6NSwibmNvbCI6Miwic3VtbWFyeSI6eyJBIHRpYmJsZSI6WyI1IMOXIDIiXX19LCJyZGYiOiJINHNJQUFBQUFBQUFBMlZSUDB2RFFCUy9wbzJTYUd1bE9EaVpXV3lnaXVDWVFkVEJTU3gwQzJmeWJJTHBwZHhkV3F0THdkVXY0TmJOVFJ6OEFvTGdkM0FRWFAwR0lyUytwRG5RK0lhN2Q3LzM1L2Q3OTA3Mk96dG14eVNFbEVtbGpLZU9MdEhicHdmTlBVSXFHajVLcEVLTTlMN0VjQU9kRkt5bldYbGc1WkJUUDZFU0xCKzZIQ0NIbDQ3Q2JtQUpMNGpqS0lmV2prRUlTd2FVV2NHLzRHcWJoUVBnSXBRajFZZ1FZNGFHZHkzbGMrUmtkSHMxL1hURzVhL050KzE3Wi9qNnVOdDZmM1p1cnJlV1h5WWZ6dFBEM1RwYVFiak9hQTlFTGxyTFFRUDh4S015akZrT2JGQWtwMTF3SlFqcHlyQUhiaCs0aTJsdUJBT0lDazBOSGc5dDFiaWFOaDdqZ1dLL2kreGVSSVZpVjZEcFUwbnRjNDcxK0pvV1NoYmpmaW9NaTdSRzlzOS9pMHU4QU5RVGxpcnhtMTZRc0l0bXE1VXlaUEc1VlhOZi8rVnJjMDV0VmxqbUFyQnV5TlFPOVlpZWdWcFFEVWZPSnJiN1BHUlNqWUtvc0dVc3Fjb3p2VGhTU0RZY21mNEFBeGV1NW1jQ0FBQT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["education"],"name":[1],"type":["chr"],"align":["left"]},{"label":["average_test_time_per_edu_level"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"Graduate degree","2":"330.0297"},{"1":"High school","2":"512.4967"},{"1":"Less than high school","2":"380.4805"},{"1":"University degree","2":"623.3965"},{"1":"NA","2":"5294.5980"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[5]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="question-6---whats-the-average-rwa-score-for-people-aged-under-18-18-to-25-26-to-40-41-to-60-over-60" class="section level2">
+<h2>Question 6 - What’s the average RWA score for people aged Under 18,
+18 to 25, 26 to 40, 41 to 60, Over 60?</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6NSwibmNvbCI6Miwic3VtbWFyeSI6eyJBIHRpYmJsZSI6WyI1IMOXIDIiXX19LCJyZGYiOiJINHNJQUFBQUFBQUFBd3R5aVREbWl1QmlZR0JnWm1CaEJwS3NRQ1lEYTJpSW02NEZBd01MRTVERHlNREN3QW1pSzREU3drQUdTRkFBcEFvcXdXRm9vVkNTcjJCa0N1TWJtWUg0SmdZd3Zva2hpRzhHNDdQN2w2VVdJYmdjb1hrcFFMNGgwRDRHUHBDeERweDZuMWxyTGtrNnNMd0lDSC9qemVYQUV2VFJPU2UreklIWmFOdEVPNkZWRGx4UFBpaGRXNmlJNWo3V3ZNVGMxR0tvMjVpZ2dseUo2YW54NlVYNXBRWEZVQkhKUktEdElOR2djTWY0Z3RTaWVMZ0tOUE00aS9MTDlXQm04b0xNYkFBUy8vLy8vNDF1Y1hKT1lqSE1ZcGdnVjBwaVNhSmVXaEZRUDVEM0QwMExlMzVCU1daK0hsQVRrekE0SkZFMU14YWhDUWlVNW9GY2txS2JuRkdhbDYxclpBU3lBU3dQQWJ4UU5pc1Ntd2xpSjlOL3RPaGlTODFMejh4TGhUaytKekVwTlFmSzRRTjZHZXhqdllLaXpMd1NtRmVBb3NWNkpma2xpVEIxWE1uNU9UQVJzT2NZL2dFQWFjazNCa2tDQUFBPSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["age_groups"],"name":[1],"type":["chr"],"align":["left"]},{"label":["average_RWA_per_age_group"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"18 to 25","2":"3.147924"},{"1":"26 to 40","2":"2.613434"},{"1":"41 to 60","2":"2.540499"},{"1":"Over 60","2":"2.399762"},{"1":"Under 18","2":"3.361786"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[5]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+</div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyAxLiBJbnRyb2R1Y3Rpb24KCkFuYWx5c2VzIGZpbGUgZm9yIHRoZSBgQ29kZUNsYW4gLSBkaXJ0eSBkYXRhIHByb2plY3QgLSB0YXNrIDU6IFJpZ2h0IFdpbmcgQXV0aG9yaXRhcmlhbmlzbQpUaGlqbWVuIEJyZWVzY2hvdGVuIApDb2RlQ2xhbiBQcm9mZXNzaW9uYWwgRGF0YSBBbmFseXNpcyBzdHVkZW50IGNvaG9ydCBERTIxCgojIEFuYWx5c2lzCgoK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyAxLiBJbnRyb2R1Y3Rpb24KCkFuYWx5c2VzIGZpbGUgZm9yIHRoZSBgQ29kZUNsYW4gLSBkaXJ0eSBkYXRhIHByb2plY3QgLSB0YXNrIDU6IFJpZ2h0IFdpbmcgQXV0aG9yaXRhcmlhbmlzbQpUaGlqbWVuIEJyZWVzY2hvdGVuIApDb2RlQ2xhbiBQcm9mZXNzaW9uYWwgRGF0YSBBbmFseXNpcyBzdHVkZW50IGNvaG9ydCBERTIxCgojIEFuYWx5c2lzCgoKYGBge3J9CmxpYnJhcnkodGlkeXZlcnNlKQoKcmlnaHR3aW5nIDwtIHJlYWRfY3N2KCIuLi9jbGVhbl9kYXRhL3JpZ2h0d2luZ19jbGVhbmVkLmNzdiIpIApgYGAKCiMjIFF1ZXN0aW9uIDEgLSBXaGF04oCZcyB0aGUgYXZlcmFnZSBSV0Egc2NvcmUgZm9yIGVhY2ggZ2VuZGVyPwoKYGBge3J9CnJpZ2h0d2luZyAlPiUgCiAgc2VsZWN0KGdlbmRlciwgYXZlcmFnZV9SV1MpICU+JSAKICBncm91cF9ieShnZW5kZXIpICU+JSAKICBzdW1tYXJpc2UoYXZlcmFnZV9SV0FfcGVyX2dlbmRlciA9IG1lYW4oYXZlcmFnZV9SV1MpKQpgYGAKCiMjIFF1ZXN0aW9uIDIgLSBXaGF04oCZcyB0aGUgYXZlcmFnZSBSV0Egc2NvcmUgZm9yIGxlZnQgaGFuZGVkIHBlb3BsZSB2cy4gcmlnaHQgaGFuZGVkIHBlb3BsZQoKYGBge3J9CnJpZ2h0d2luZyAlPiUgCiAgZmlsdGVyKGhhbmQgPT0gIlJpZ2h0IiB8IGhhbmQgPT0gIkxlZnQiKSAlPiUgCiAgZ3JvdXBfYnkoaGFuZCkgJT4lIAogIHN1bW1hcmlzZShhdmVyYWdlX1JXQV9wZXJfaGFuZGVkbmVzcyA9IG1lYW4oYXZlcmFnZV9SV1MpKQpgYGAKCiMjIFF1ZXN0aW9uIDQgLSBXaGF04oCZcyB0aGUgYXZlcmFnZSB0aW1lIHRvIHRha2UgdGhlIHRlc3QgZm9yIGVhY2ggZWR1Y2F0aW9uIGxldmVsPwoKYGBge3J9CnRpbWVfcGVyX2VkdWxldmVsIDwtIHJpZ2h0d2luZyAlPiUgCiAgc2VsZWN0KHRlc3RlbGFwc2UsIGVkdWNhdGlvbikgJT4lIAogIGdyb3VwX2J5KGVkdWNhdGlvbikgJT4lIAogIHN1bW1hcmlzZShhdmVyYWdlX3Rlc3RfdGltZV9wZXJfZWR1X2xldmVsID0gbWVhbih0ZXN0ZWxhcHNlKSkgCgp0aW1lX3Blcl9lZHVsZXZlbApgYGAKCiMjIFF1ZXN0aW9uIDYgLSBXaGF04oCZcyB0aGUgYXZlcmFnZSBSV0Egc2NvcmUgZm9yIHBlb3BsZSBhZ2VkIFVuZGVyIDE4LCAxOCB0byAyNSwgMjYgdG8gNDAsIDQxIHRvIDYwLCBPdmVyIDYwPwoKYGBge3J9CnJpZ2h0d2luZyAlPiUgCiAgc2VsZWN0KGFnZV9ncm91cHMsIGF2ZXJhZ2VfUldTKSAlPiUgCiAgZ3JvdXBfYnkoYWdlX2dyb3VwcykgJT4lIAogIHN1bW1hcmlzZShhdmVyYWdlX1JXQV9wZXJfYWdlX2dyb3VwID0gbWVhbihhdmVyYWdlX1JXUykpCmBgYAoK</div>
 
 
 

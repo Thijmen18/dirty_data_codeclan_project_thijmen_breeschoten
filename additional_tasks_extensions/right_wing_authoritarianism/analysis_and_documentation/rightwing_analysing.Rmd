@@ -12,3 +12,47 @@ CodeClan Professional Data Analysis student cohort DE21
 # Analysis
 
 
+```{r}
+library(tidyverse)
+
+rightwing <- read_csv("../clean_data/rightwing_cleaned.csv") 
+```
+
+## Question 1 - What’s the average RWA score for each gender?
+
+```{r}
+rightwing %>% 
+  select(gender, average_RWS) %>% 
+  group_by(gender) %>% 
+  summarise(average_RWA_per_gender = mean(average_RWS))
+```
+
+## Question 2 - What’s the average RWA score for left handed people vs. right handed people
+
+```{r}
+rightwing %>% 
+  filter(hand == "Right" | hand == "Left") %>% 
+  group_by(hand) %>% 
+  summarise(average_RWA_per_handedness = mean(average_RWS))
+```
+
+## Question 4 - What’s the average time to take the test for each education level?
+
+```{r}
+time_per_edulevel <- rightwing %>% 
+  select(testelapse, education) %>% 
+  group_by(education) %>% 
+  summarise(average_test_time_per_edu_level = mean(testelapse)) 
+
+time_per_edulevel
+```
+
+## Question 6 - What’s the average RWA score for people aged Under 18, 18 to 25, 26 to 40, 41 to 60, Over 60?
+
+```{r}
+rightwing %>% 
+  select(age_groups, average_RWS) %>% 
+  group_by(age_groups) %>% 
+  summarise(average_RWA_per_age_group = mean(average_RWS))
+```
+
