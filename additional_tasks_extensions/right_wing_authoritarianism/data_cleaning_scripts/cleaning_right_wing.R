@@ -50,119 +50,56 @@ rightwing_reversed_scores <- as.data.frame(rightwing_reversed_scores)
 # total time taken for the survey (column: testelapse)
 # column regarding participant (columns: education, gender, hand, familysize, age)
 
-cleaned_rightwing <- rightwing_reversed_scores %>% 
+cleaned_rightwing  <-  rightwing_reversed_scores %>% 
+    
  # select(3:22, testelapse, education, gender, hand, familysize, age) %>% 
 # lets introduce a ID per row
+    
   mutate(userID = row_number(), .before = Q3) %>% 
+    
 # we want to get an average RWS score for questions 3-22 (questions 1-2 are 'warming up' questions)
+    
   mutate(average_RWS = rowMeans(across(Q3:Q22)), .after = userID) %>% 
+    
 # no need for the remaining Qs
+    
  select(userID, average_RWS, testelapse, education, gender, hand, familysize, age) %>% 
+    
 
 #### Step 4:
 # let's recode some values, to give the table (and results later) more meaning!
+
   mutate(gender = recode(gender,
-                         "Male" = 1,
-                         "Female" = 2,
-                         "Other" = 3),
+                         "1" = "Male",
+                         "2" = "Female",
+                         "3" = "Other"),
          education = recode(education,
-                            "Less than high school" = 1,
-                            "High school" = 2,
-                            "University degree" = 3,
-                            "Graduate degree" = 4),
+                            "1" = "Less than high school",
+                            "2" = "High school",
+                            "3" = "University degree",
+                            "4" = "Graduate degree"),
          hand = recode(hand,
-                       "Right" = 1,
-                       "Left" = 2,
-                       "Both" = 3)
+                       "1" = "Right",
+                        "2" = "Left",
+                       "3" = "Both")
          ) %>% 
-  
+
 #### Step 5:
-# Let's bin the ages together, so this is more informative
+# Let's bin the ages together in a separate column, so this is more informative
+    
   mutate(age_groups = case_when(
     age < 18 ~ "Under 18",
-    age >= 18 & =< 25 ~ "18 to 25",
-    age >= 26 & =< 40 ~ "26 to 40",
-    age >= 41 & =< 60 ~ "41 to 60",
-    age > 60)
-    )
+    age >= 18 & age <= 25 ~ "18 to 25",
+    age >= 26 & age <= 40 ~ "26 to 40",
+    age >= 41 & age <= 60 ~ "41 to 60",
+    age > 60 ~ "Over 60")
+    ) 
 
-
+#### Step 6:
+#Lets write the output to clean csv file
+cleaned_rightwing %>% 
+write.csv(file = "clean_data/rightwing_cleaned.csv")
 
   
   
   
-  
-  
-  
-rightwing_reduced <- rightwing %>% 
-  select(3:22, testelapse, education, gender, hand, familysize, age) %>% 
-  mutate(Q4 = rev(Q4),
-         Q6 = rev(Q6),
-         Q8 = rev(Q8),
-         Q9 = rev(Q9),
-         Q11 = rev(Q11),
-         Q13 = rev(Q13),
-         Q15 = rev(Q15),
-         Q18 = rev(Q18),
-         Q20 = rev(Q20),
-         Q21 = rev(Q21)) %>%
-  mutate(userID = row_number(), .before = Q3) %>% 
-  mutate(average_RWS = rowMeans(across(Q3:Q22)), .after = userID) 
-
-#################
-#Further attempts
-################### 
-
-rightwing %>% 
-map_at(c("Q4", "Q6"), reverse_scoring)
-
-
-# and a for loop to do this repeatedly for all columns
-
-columnname <- c("Q4", "Q6")
-
-for (column in columnname) {
-  test <- mutate(rightwing, column = reverse_scoring("column"))
-}
-
-
-
-
-
-rightwing %>% 
-  mutate(Q4 = reverse_scoring(Q4)) %>% 
-  view()
-
-
-rightwing %>% 
- mutate(Q4 = 10-Q4) %>% 
-  view()
-
-
-#### Step 2: drop data columns we do not need.
-# we need: average score of question 3-22 (Note: Q4, 6, 8, 9, 11, 13, 15, 18, 20, 21 are reverse scored!)
-# total time taken for the survey (column: testelapse)
-# column regarding participant (columns: education, gender, hand, familysize, age)
-
-rightwing_reduced <- rightwing %>% 
-  select(3:22, testelapse, education, gender, hand, familysize, age) %>% 
-  mutate(Q4 = rev(Q4),
-         Q6 = rev(Q6),
-         Q8 = rev(Q8),
-         Q9 = rev(Q9),
-         Q11 = rev(Q11),
-         Q13 = rev(Q13),
-         Q15 = rev(Q15),
-         Q18 = rev(Q18),
-         Q20 = rev(Q20),
-         Q21 = rev(Q21)) %>%
-  mutate(userID = row_number(), .before = Q3) %>% 
-  mutate(average_RWS = rowMeans(across(Q3:Q22)), .after = userID) 
-
-#### Step 3: 
-# drop all Q columns (you have calculated the average) and read file to clean csv
-
-rightwing_reduced %>% 
-  select(userID, average_RWS, testelapse, education, gender, hand, familysize, age) %>% 
-  write.csv(file = "clean_data/rightwing_cleaned.csv")
-
