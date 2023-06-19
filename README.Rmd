@@ -27,7 +27,7 @@ documentation: **
   dirty_data_codeclan_project_thijmen_breeschoten/halloween_candy/documentation_and_analysis/`analysing_candy.Rmd`
   
 * Task 5:
-  folder: `additional_tasks_extensions` is a yet unfinished project!
+  folder: `additional_tasks_extensions/right_wing_authoritarianism` is an additional extension task.
 
 
 ### Project tasks
@@ -47,6 +47,11 @@ documentation: **
           - `boing-boing-candy-2015.xlsx`   <br>
           - `boing-boing-candy-2016.xlsx`   <br>
           - `boing-boing-candy-2017.xlsx`   <br>
+          
+* Task 5: Right Wing Authoritarianism (additional, extra task)
+          Data contents:
+          The raw data contains the results from a questionnaire regarding right_wing 
+          authoritarianism preferences among respondents.
 
 ## FILE AND FOLDER OVERVIEW
 For an overview of the individual tasks, cleaning and analyses please read the task-specific
@@ -126,3 +131,41 @@ documentation:
        to answer the analyses questions. <br>
   * raw_data <br>
         - ``boing-boing-candy-2015.xlsx`, `boing-boing-candy-2016.xlsx`,                                       `boing-boing-candy-2017.xlsx` raw datasets in xlsx format. <br>
+        
+### Task 5 - extension/additional - Right Wing Authoritarianism
+
+**Language, software and packages used**
+
+* The code is written in R (version 4.3.0)
+    R Core Team (2023). _R: A Language and Environment for Statistical Computing_. 
+    R Foundation for Statistical Computing, Vienna, Austria.
+    <https://www.R-project.org/>
+
+  * R is run in Rstudio 2023.03.0+386 
+
+  * The following libraries are required (specified per script):
+    cleaning_right_wing.R
+      - `tidyverse`(ver 2.0.0)
+      - `readxl` (ver 1.4.2)
+    rightwing_analysing.Rmd
+      - `tidyverse`(ver 2.0.0)
+      
+**File and folder overview**
+
+  The Rproject folder `/additional_tasks_extensions/right_wing_authoritarianism` 
+  contains the .Rproj file and the following 
+  folders.
+  The following files are included and distributed in each folder:
+
+  * clean_data <br>
+       - `rightwing_cleaned.csv` cleaned dataset using script 'cleaning_right_wing.R' <br>
+  * data_cleaning_scripts <br>
+       - `cleaning_right_wing.R` Rscript to read and clean the raw data file. <br>
+  * documentation_and_analysis <br>
+       - `rightwing_analysing.Rmd` (and knitted html file) Rnotebook script analysing
+       the cleaned dataset in order to answer the analyses questions. 
+       It presents the script/code to analyse the cleaned dataset in order 
+       to answer the analyses questions. <br>
+  * raw_data <br>
+        - `rwa.csv`, raw datasets in csv format. 
+        - `rwa_codebook.txt`, explanatory file regarding the raw dataset <br>
