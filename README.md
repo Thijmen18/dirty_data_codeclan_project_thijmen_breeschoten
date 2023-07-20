@@ -12,8 +12,8 @@ CodeClan - Professional Data Analyses Course - student cohort DE21
 Goal of the project task is to clean and analyse a raw "dirty" dataset in order to answer 
 several questions regarding the data.
 
-** For an overview of the individual tasks, cleaning and analyses please read the task-specific
-documentation: **
+__For an overview of the individual tasks, cleaning and analyses please read the task-specific
+documentation:__
 
 * Task 3: 
   dirty_data_codeclan_project_thijmen_breeschoten/sea_bird_observation/`README_analyses_overview.Rmd`
