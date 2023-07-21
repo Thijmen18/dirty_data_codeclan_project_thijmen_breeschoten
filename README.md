@@ -9,8 +9,9 @@ CodeClan - Professional Data Analyses Course - student cohort DE21
 
 ### Dirty Data Project
 
-Goal of the project is to clean and analyse a VERY "dirty" dataset in order to answer 
-several research questions.
+Goal of the project is to clean and analyse multiple VERY "dirty" dataset in order to answer 
+several research questions. <br>
+Each task contains the analysis and cleaning steps of one dataset. Each dataset is cleaned and analysed in a designated folder.
 
 __For an overview of the individual tasks, cleaning and analyses please read the task-specific
 documentation:__
@@ -127,7 +128,10 @@ documentation:
        It further presents the script/code to analyse the cleaned dataset in order 
        to answer the analyses questions. <br>
   * raw_data <br>
-        - ``boing-boing-candy-2015.xlsx`, `boing-boing-candy-2016.xlsx`,`boing-boing-candy-2017.xlsx` raw datasets in xlsx format. <br>
+        - `boing-boing-candy-2015.xlsx` <br>
+        - `boing-boing-candy-2016.xlsx` <br>
+        - `boing-boing-candy-2017.xlsx` <br>
+    All raw datasets are in xlsx format. <br>
         
 ### Task 5 - extension/additional - Right Wing Authoritarianism
 
@@ -138,9 +142,9 @@ documentation:
     R Foundation for Statistical Computing, Vienna, Austria.
     <https://www.R-project.org/>
 
-  * R is run in Rstudio 2023.03.0+386 
+* R is run in Rstudio 2023.03.0+386 
 
-  * The following libraries are required (specified per script): <br>
+* The following libraries are required (specified per script): <br>
     cleaning_right_wing.R
       - `tidyverse`(ver 2.0.0)
       - `readxl` (ver 1.4.2)
@@ -164,5 +168,5 @@ documentation:
        It presents the script/code to analyse the cleaned dataset in order 
        to answer the analyses questions. <br>
   * raw_data <br>
-        - `rwa.csv`, raw datasets in csv format. 
+        - `rwa.csv`, raw datasets in csv format. <br>
         - `rwa_codebook.txt`, explanatory file regarding the raw dataset <br>
