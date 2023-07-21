@@ -31,9 +31,9 @@ documentation:__
 * Task 3: __Seabird observations__ <br>
           Data contents: <br>
           The raw data contains seabird observations/sightings as done from ships in the seas 
-          around New Zealand. The raw data (.xls file) contains two worksheets with:
-          1) ship data.
-          2) bird data (counts+names).
+          around New Zealand. The raw data (.xls file) contains two worksheets with: <br>
+          1) ship data. <br>
+          2) bird data (counts+names). <br>
           
 * Task 4: __Halloween Candy__ <br>
           Data contents: <br>
