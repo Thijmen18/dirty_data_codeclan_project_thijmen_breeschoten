@@ -54,10 +54,10 @@ documentation:__
 For an overview of the individual tasks, cleaning and analyses please read the task-specific
 documentation:
 
-* Task 3: 
+* Task 3: <br>
   dirty_data_codeclan_project_thijmen_breeschoten/sea_bird_observation/`README_analyses_overview.Rmd`
   
-* Task 4:
+* Task 4: <br>
   dirty_data_codeclan_project_thijmen_breeschoten/halloween_candy/documentation_and_analysis/`analysing_candy.Rmd`
   
 ### Task 3 - Seabird data
