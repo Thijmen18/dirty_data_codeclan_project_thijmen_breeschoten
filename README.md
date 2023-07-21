@@ -9,17 +9,17 @@ CodeClan - Professional Data Analyses Course - student cohort DE21
 
 ### Dirty Data Project
 
-Goal of the project task is to clean and analyse a raw "dirty" dataset in order to answer 
-several questions regarding the data.
+Goal of the project is to clean and analyse a VERY "dirty" dataset in order to answer 
+several research questions.
 
 __For an overview of the individual tasks, cleaning and analyses please read the task-specific
 documentation:__
 
 * Task 3: 
-  dirty_data_codeclan_project_thijmen_breeschoten/sea_bird_observation/`README_analyses_overview.Rmd`
+  `dirty_data_codeclan_project_thijmen_breeschoten/sea_bird_observation/README_analyses_overview.Rmd`
   
 * Task 4:
-  dirty_data_codeclan_project_thijmen_breeschoten/halloween_candy/documentation_and_analysis/`analysing_candy.Rmd`
+  `dirty_data_codeclan_project_thijmen_breeschoten/halloween_candy/documentation_and_analysis/analysing_candy.Rmd`
   
 * Task 5:
   folder: `additional_tasks_extensions/right_wing_authoritarianism` is an additional extension task.
@@ -55,10 +55,10 @@ For an overview of the individual tasks, cleaning and analyses please read the t
 documentation:
 
 * Task 3: <br>
-  dirty_data_codeclan_project_thijmen_breeschoten/sea_bird_observation/`README_analyses_overview.Rmd`
+  `dirty_data_codeclan_project_thijmen_breeschoten/sea_bird_observation/README_analyses_overview.Rmd`
   
 * Task 4: <br>
-  dirty_data_codeclan_project_thijmen_breeschoten/halloween_candy/documentation_and_analysis/`analysing_candy.Rmd`
+  `dirty_data_codeclan_project_thijmen_breeschoten/halloween_candy/documentation_and_analysis/analysing_candy.Rmd`
   
 ### Task 3 - Seabird data
 
@@ -80,7 +80,7 @@ documentation:
   
 **File and folder overview**
 
-  The project folder `sea_bird_observation` contains the .Rproj file.
+  The project folder `sea_bird_observation` contains the .Rproj file. <br>
   The following files are included and distributed in each folder:
 
   * clean_data <br>
@@ -114,7 +114,7 @@ documentation:
 **File and folder overview**
 
   The Rproject folder `halloween_candy` contains the .Rproj file and the following 
-  folders.
+  folders. <br>
   The following files are included and distributed in each folder:
 
   * clean_data <br>
