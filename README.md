@@ -64,14 +64,14 @@ documentation:
 
 **Language, software and packages used**
 
-  * The code is written in R (version 4.3.0)
+  * The code is written in R (version 4.3.0) <br>
     R Core Team (2023). _R: A Language and Environment for Statistical Computing_. 
     R Foundation for Statistical Computing, Vienna, Austria.
    <https://www.R-project.org/>
 
   * R is run in Rstudio 2023.03.0+386 
 
-  * The following libraries are required:
+  * The following libraries are required: <br>
     cleaning_seabirds.R
       - `tidyverse`(ver 2.0.0)
       - `readxl` (ver 1.4.2)
@@ -97,14 +97,14 @@ documentation:
 
 **Language, software and packages used**
 
-  * The code is written in R (version 4.3.0)
+  * The code is written in R (version 4.3.0) <br>
     R Core Team (2023). _R: A Language and Environment for Statistical Computing_. 
     R Foundation for Statistical Computing, Vienna, Austria.
     <https://www.R-project.org/>
 
   * R is run in Rstudio 2023.03.0+386 
 
-  * The following libraries are required (specified per script):
+  * The following libraries are required (specified per script): <br>
     cleaning_candy.R
       - `tidyverse`(ver 2.0.0)
       - `readxl` (ver 1.4.2)
@@ -133,14 +133,14 @@ documentation:
 
 **Language, software and packages used**
 
-* The code is written in R (version 4.3.0)
+* The code is written in R (version 4.3.0) <br>
     R Core Team (2023). _R: A Language and Environment for Statistical Computing_. 
     R Foundation for Statistical Computing, Vienna, Austria.
     <https://www.R-project.org/>
 
   * R is run in Rstudio 2023.03.0+386 
 
-  * The following libraries are required (specified per script):
+  * The following libraries are required (specified per script): <br>
     cleaning_right_wing.R
       - `tidyverse`(ver 2.0.0)
       - `readxl` (ver 1.4.2)
