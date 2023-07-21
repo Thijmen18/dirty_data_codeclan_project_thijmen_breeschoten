@@ -27,28 +27,26 @@ documentation:__
 
 ### Project tasks
 
-* Task 3: Seabird observations
-
-          Data contents:
+* Task 3: __Seabird observations__ <br>
+          Data contents: <br>
           The raw data contains seabird observations/sightings as done from ships in the seas 
           around New Zealand. The raw data (.xls file) contains two worksheets with:
           1) ship data.
           2) bird data (counts+names).
           
-* Task 4: Halloween Candy
-  
-          Data contents:
+* Task 4: __Halloween Candy__ <br>
+          Data contents: <br>
           The raw data contains results from a questionnaire regarding halloween/trick or           treat candy.
           The data is open-access and available here: 
           https://www.scq.ubc.ca/so-much-candy-data-seriously/ <br>
           The questionnaires are taken in three consecutive years (2015, 2016, 2017), and
           the results can be found in three separate .xlsx files: <br>
-          - `boing-boing-candy-2015.xlsx`   <br>
-          - `boing-boing-candy-2016.xlsx`   <br>
-          - `boing-boing-candy-2017.xlsx`   <br>
+          * `boing-boing-candy-2015.xlsx`   <br>
+          * `boing-boing-candy-2016.xlsx`   <br>
+          * `boing-boing-candy-2017.xlsx`   <br>
           
-* Task 5: Right Wing Authoritarianism (additional, extra task)
-          Data contents:
+* Task 5: __Right Wing Authoritarianism__ (additional, extra task) <br>
+          Data contents: <br>
           The raw data contains the results from a questionnaire regarding right_wing 
           authoritarianism preferences among respondents.
 
