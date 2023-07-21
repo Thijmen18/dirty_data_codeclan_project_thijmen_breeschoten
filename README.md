@@ -127,7 +127,7 @@ documentation:
        It further presents the script/code to analyse the cleaned dataset in order 
        to answer the analyses questions. <br>
   * raw_data <br>
-        - ``boing-boing-candy-2015.xlsx`, `boing-boing-candy-2016.xlsx`,                                       `boing-boing-candy-2017.xlsx` raw datasets in xlsx format. <br>
+        - ``boing-boing-candy-2015.xlsx`, `boing-boing-candy-2016.xlsx`,`boing-boing-candy-2017.xlsx` raw datasets in xlsx format. <br>
         
 ### Task 5 - extension/additional - Right Wing Authoritarianism
 
