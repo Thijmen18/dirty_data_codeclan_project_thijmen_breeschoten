@@ -4,7 +4,7 @@ README file for the repo `dirty_data_codeclan_project_thijmen_breeschoten`
 
 ## OVERVIEW
 
-This repo contains the analyses projects for the 
+This repo contains the analysis projects for the 
 CodeClan - Professional Data Analyses Course - student cohort DE21
 
 ### Dirty Data Project
