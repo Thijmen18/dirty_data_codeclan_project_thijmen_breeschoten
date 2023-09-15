@@ -114,3 +114,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# folder with the old README files
+old_readme/
